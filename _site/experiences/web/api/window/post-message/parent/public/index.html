@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+  </head>
+  <body>
+  <h1>Parent</h1>
+  <div id="message">Waiting for a message from the iframe...</div>
+  <iframe
+    id="iframe"
+    src="http://localhost:3001">
+  </iframe>
+  <script type="text/javascript">
+    window.addEventListener('message', displayMessage, false);
+
+    function displayMessage(evt) {
+      if (evt.origin !== 'http://localhost:3001') return
+      var message = `We receive the message: "${evt.data}" from the iframe.`;
+      document.getElementById('message').innerHTML = message;
+    }
+  </script>
+  </body>
+</html>
