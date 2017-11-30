@@ -26,3 +26,42 @@ rougify style github > assets/css/syntax.css
 - IBM
 - Azure
 - Google Compute Engine
+
+### JS riddles
+https://www.youtube.com/watch?v=D-juPGb7EKY&t=609s
+```js
+let x;
+x = { [ {} ] () { [] } }
+
+console.log(x);
+
+x = y => x <= y == x
+
+console.log(x);
+
+// Let assume that `val`, `def` and `target` are already declared. `val` can still be equal to `undefined`.
+// Provide a shorter solution of:
+target = val !== undefined ? val : def
+
+console.log(target);
+
+// The following is not good enough
+target = val || def;
+
+console.log(target);
+
+[target = def] = [val]
+
+console.log(target);
+
+// Check if a function is an arrow function or not:
+
+const f1 = function() {}
+const f2 = () => {}
+
+console.log(f1.hasOwnProperty('prototype'));
+console.log(f2.hasOwnProperty('prototype'));
+
+// You can not use f2 has a constructor, unlike f1.
+
+```
