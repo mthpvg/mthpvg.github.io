@@ -1,13 +1,9 @@
 ---
 layout: post
-title:  "Javascript details"
+title:  "To string conversions"
 date:   2017-11-29 02:14:00 -0400
 categories: javascript details
 ---
-## String
-
-`String()` vs `toString()` vs `JSON.stringify`
-
 Note: the comments on the right side is the return value of the left side.
 ```js
 String('foo')                 // foo
@@ -32,6 +28,7 @@ String(undefined)             // undefined
 JSON.stringify(undefined)     // undefined
 undefined.toString()          //Cannot read property 'toString' of undefined
 ```
+`null` and `undefined` are not object. Ok `null` is but it should not be. Nevertheless both lack a `toString` method, hence the: `Cannot read property 'toString'`.
 
 ```js
 const obj = {
@@ -43,7 +40,13 @@ const obj = {
 String(obj)                  // foo
 JSON.stringify(obj)          // {"baz:"baz}
 obj.toString()               // foo
+
+obj + 'qux'                  // barqux
+[obj, 'qux'].join('')        // fooqux
 ```
+- We can see that the `String` function calls the `toString` method behind the scene.
+- When using the `+` operator the concatenation uses the ` valueOf` method.
+- On the other hand `[obj, 'qux']` is calling the `toString` method.
 
 ```js
 obj.toString = null
@@ -52,6 +55,7 @@ String(obj)                  // bar
 JSON.stringify(obj)          // {"baz:"baz,"toString":null}
 obj.toString()               // obj.toString is not a function
 ```
+The `toString` method is not available so it falls back to the `valueOf` method.
 
 ```js
 obj.valueOf = null
@@ -60,17 +64,25 @@ String(obj)                  // Cannot convert object to primitive value
 JSON.stringify(obj)          // {"baz:"baz,"toString":null,"valueOf":null}
 obj.toString()               // obj.toString is not a function
 ```
+None of the needed methods are here, it throws.
 
-Explanation from [CMS's answer on Stackoverflow](https://stackoverflow.com/questions/3945202/whats-the-difference-between-stringvalue-vs-value-tostring) is:
+```js
+const obj = {
+  baz: 'baz',
+  toString: function () { return 'foo'; },
+  valueOf: function () { return 'bar'; }
+};
 
-In a brief, when converting from Object-to-String, the following steps are taken:
+obj.valueOf = null
 
-1. If available, execute the toString method.
-  If the result is not a primitive, go to Step 2, else return the result
-2. If available, execute the valueOf method.
-  If the result is a primitive, return result, else Step 3.
-#. Throw TypeError.
+String(obj)                  // foo
+JSON.stringify(obj)          // {"baz:"baz}
+obj.toString()               // foo
 
-## You want to know more
+obj + 'qux'                  // fooqux
+[obj, 'qux'].join('')        // fooqux
+```
+Funny enough, or not, the concatenation with the `+` operator also uses `toString` as a fallback if `valueOf` is not available.
+It's the exact opposite behavior as with the string conversion.
 
-- http://www.adequatelygood.com/Object-to-Primitive-Conversions-in-JavaScript.html
+Source: http://www.adequatelygood.com/Object-to-Primitive-Conversions-in-JavaScript.html

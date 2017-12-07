@@ -65,7 +65,7 @@
         <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
 
   <header class="post-header">
-    <h1 class="post-title" itemprop="name headline">Javascript details</h1>
+    <h1 class="post-title" itemprop="name headline">To string conversions</h1>
     <p class="post-meta">
       <time datetime="2017-11-29T07:14:00+01:00" itemprop="datePublished">
         
@@ -75,11 +75,7 @@
   </header>
 
   <div class="post-content" itemprop="articleBody">
-    <h2 id="string">String</h2>
-
-<p><code class="highlighter-rouge">String()</code> vs <code class="highlighter-rouge">toString()</code> vs <code class="highlighter-rouge">JSON.stringify</code></p>
-
-<p>Note: the comments on the right side is the return value of the left side.</p>
+    <p>Note: the comments on the right side is the return value of the left side.</p>
 <div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">String</span><span class="p">(</span><span class="s1">'foo'</span><span class="p">)</span>                 <span class="c1">// foo</span>
 <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="s1">'foo'</span><span class="p">)</span>         <span class="c1">// "foo"</span>
 <span class="s1">'foo'</span><span class="p">.</span><span class="nx">toString</span><span class="p">()</span>              <span class="c1">// foo</span>
@@ -99,6 +95,7 @@
 <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="kc">undefined</span><span class="p">)</span>     <span class="c1">// undefined</span>
 <span class="kc">undefined</span><span class="p">.</span><span class="nx">toString</span><span class="p">()</span>          <span class="c1">//Cannot read property 'toString' of undefined</span>
 </code></pre></div></div>
+<p><code class="highlighter-rouge">null</code> and <code class="highlighter-rouge">undefined</code> are not object. Ok <code class="highlighter-rouge">null</code> is but it should not be. Nevertheless both lack a <code class="highlighter-rouge">toString</code> method, hence the: <code class="highlighter-rouge">Cannot read property 'toString'</code>.</p>
 
 <div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">obj</span> <span class="o">=</span> <span class="p">{</span>
   <span class="na">baz</span><span class="p">:</span> <span class="s1">'baz'</span><span class="p">,</span>
@@ -109,7 +106,15 @@
 <span class="nb">String</span><span class="p">(</span><span class="nx">obj</span><span class="p">)</span>                  <span class="c1">// foo</span>
 <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">obj</span><span class="p">)</span>          <span class="c1">// {"baz:"baz}</span>
 <span class="nx">obj</span><span class="p">.</span><span class="nx">toString</span><span class="p">()</span>               <span class="c1">// foo</span>
+
+<span class="nx">obj</span> <span class="o">+</span> <span class="s1">'qux'</span>                  <span class="c1">// barqux</span>
+<span class="p">[</span><span class="nx">obj</span><span class="p">,</span> <span class="s1">'qux'</span><span class="p">].</span><span class="nx">join</span><span class="p">(</span><span class="s1">''</span><span class="p">)</span>        <span class="c1">// fooqux</span>
 </code></pre></div></div>
+<ul>
+  <li>We can see that the <code class="highlighter-rouge">String</code> function calls the <code class="highlighter-rouge">toString</code> method behind the scene.</li>
+  <li>When using the <code class="highlighter-rouge">+</code> operator the concatenation uses the ` valueOf` method.</li>
+  <li>On the other hand <code class="highlighter-rouge">[obj, 'qux']</code> is calling the <code class="highlighter-rouge">toString</code> method.</li>
+</ul>
 
 <div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">obj</span><span class="p">.</span><span class="nx">toString</span> <span class="o">=</span> <span class="kc">null</span>
 
@@ -117,6 +122,7 @@
 <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">obj</span><span class="p">)</span>          <span class="c1">// {"baz:"baz,"toString":null}</span>
 <span class="nx">obj</span><span class="p">.</span><span class="nx">toString</span><span class="p">()</span>               <span class="c1">// obj.toString is not a function</span>
 </code></pre></div></div>
+<p>The <code class="highlighter-rouge">toString</code> method is not available so it falls back to the <code class="highlighter-rouge">valueOf</code> method.</p>
 
 <div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">obj</span><span class="p">.</span><span class="nx">valueOf</span> <span class="o">=</span> <span class="kc">null</span>
 
@@ -124,24 +130,27 @@
 <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">obj</span><span class="p">)</span>          <span class="c1">// {"baz:"baz,"toString":null,"valueOf":null}</span>
 <span class="nx">obj</span><span class="p">.</span><span class="nx">toString</span><span class="p">()</span>               <span class="c1">// obj.toString is not a function</span>
 </code></pre></div></div>
+<p>None of the needed methods are here, it throws.</p>
 
-<p>Explanation from <a href="https://stackoverflow.com/questions/3945202/whats-the-difference-between-stringvalue-vs-value-tostring">CMS’s answer on Stackoverflow</a> is:</p>
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">obj</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">baz</span><span class="p">:</span> <span class="s1">'baz'</span><span class="p">,</span>
+  <span class="na">toString</span><span class="p">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="s1">'foo'</span><span class="p">;</span> <span class="p">},</span>
+  <span class="na">valueOf</span><span class="p">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="s1">'bar'</span><span class="p">;</span> <span class="p">}</span>
+<span class="p">};</span>
 
-<p>In a brief, when converting from Object-to-String, the following steps are taken:</p>
+<span class="nx">obj</span><span class="p">.</span><span class="nx">valueOf</span> <span class="o">=</span> <span class="kc">null</span>
 
-<ol>
-  <li>If available, execute the toString method.
-  If the result is not a primitive, go to Step 2, else return the result</li>
-  <li>If available, execute the valueOf method.
-  If the result is a primitive, return result, else Step 3.
-#. Throw TypeError.</li>
-</ol>
+<span class="nb">String</span><span class="p">(</span><span class="nx">obj</span><span class="p">)</span>                  <span class="c1">// foo</span>
+<span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">obj</span><span class="p">)</span>          <span class="c1">// {"baz:"baz}</span>
+<span class="nx">obj</span><span class="p">.</span><span class="nx">toString</span><span class="p">()</span>               <span class="c1">// foo</span>
 
-<h2 id="you-want-to-know-more">You want to know more</h2>
+<span class="nx">obj</span> <span class="o">+</span> <span class="s1">'qux'</span>                  <span class="c1">// fooqux</span>
+<span class="p">[</span><span class="nx">obj</span><span class="p">,</span> <span class="s1">'qux'</span><span class="p">].</span><span class="nx">join</span><span class="p">(</span><span class="s1">''</span><span class="p">)</span>        <span class="c1">// fooqux</span>
+</code></pre></div></div>
+<p>Funny enough, or not, the concatenation with the <code class="highlighter-rouge">+</code> operator also uses <code class="highlighter-rouge">toString</code> as a fallback if <code class="highlighter-rouge">valueOf</code> is not available.
+It’s the exact opposite behavior as with the string conversion.</p>
 
-<ul>
-  <li>http://www.adequatelygood.com/Object-to-Primitive-Conversions-in-JavaScript.html</li>
-</ul>
+<p>Source: http://www.adequatelygood.com/Object-to-Primitive-Conversions-in-JavaScript.html</p>
 
   </div>
 

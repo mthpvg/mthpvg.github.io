@@ -11,6 +11,9 @@ rougify style github > assets/css/syntax.css
 
 ## Future articles
 
+### Links
+- https://blog.sourcerer.io/writing-a-simple-linux-kernel-module-d9dc3762c234
+
 ### async sync APIs
 - https://nodejs.org/dist/latest-v8.x/docs/api/process.html#process_process_nexttick_callback_args
 - https://stackoverflow.com/questions/19729918/common-approach-to-process-nexttick
@@ -22,10 +25,20 @@ rougify style github > assets/css/syntax.css
   - https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Frame-Options
   - https://parent.post-message.window.api.web.experiences.mthpvg.com/index.html
 
+### object
+`console.log(Object.values(obj));`
+
 ### Tone analyzer
 - IBM
 - Azure
 - Google Compute Engine
+
+### Atom package
+https://github.com/kingarthurpt/atom-show-project-name
+
+### Tree shake c3.js
+Because 180kb minified is a lot.
+https://gionkunz.github.io/chartist-js/
 
 ### JS riddles
 https://www.youtube.com/watch?v=D-juPGb7EKY&t=609s
