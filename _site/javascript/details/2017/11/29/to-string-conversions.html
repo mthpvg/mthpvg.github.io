@@ -108,7 +108,8 @@
 <span class="nx">obj</span><span class="p">.</span><span class="nx">toString</span><span class="p">()</span>               <span class="c1">// foo</span>
 
 <span class="nx">obj</span> <span class="o">+</span> <span class="s1">'qux'</span>                  <span class="c1">// barqux</span>
-<span class="p">[</span><span class="nx">obj</span><span class="p">,</span> <span class="s1">'qux'</span><span class="p">].</span><span class="nx">join</span><span class="p">(</span><span class="s1">''</span><span class="p">)</span>        <span class="c1">// fooqux</span>
+<span class="kd">const</span> <span class="nx">arr</span> <span class="o">=</span> <span class="p">[</span><span class="nx">obj</span><span class="p">,</span> <span class="s1">'qux'</span><span class="p">];</span>
+<span class="nx">arr</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="nx">arr</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>              <span class="c1">// fooqux</span>
 </code></pre></div></div>
 <ul>
   <li>We can see that the <code class="highlighter-rouge">String</code> function calls the <code class="highlighter-rouge">toString</code> method behind the scene.</li>
@@ -116,7 +117,7 @@
   <li>On the other hand <code class="highlighter-rouge">[obj, 'qux']</code> is calling the <code class="highlighter-rouge">toString</code> method.</li>
 </ul>
 
-<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">obj</span><span class="p">.</span><span class="nx">toString</span> <span class="o">=</span> <span class="kc">null</span>
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">obj</span><span class="p">.</span><span class="nx">toString</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
 
 <span class="nb">String</span><span class="p">(</span><span class="nx">obj</span><span class="p">)</span>                  <span class="c1">// bar</span>
 <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">obj</span><span class="p">)</span>          <span class="c1">// {"baz:"baz,"toString":null}</span>
@@ -124,7 +125,7 @@
 </code></pre></div></div>
 <p>The <code class="highlighter-rouge">toString</code> method is not available so it falls back to the <code class="highlighter-rouge">valueOf</code> method.</p>
 
-<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">obj</span><span class="p">.</span><span class="nx">valueOf</span> <span class="o">=</span> <span class="kc">null</span>
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">obj</span><span class="p">.</span><span class="nx">valueOf</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
 
 <span class="nb">String</span><span class="p">(</span><span class="nx">obj</span><span class="p">)</span>                  <span class="c1">// Cannot convert object to primitive value</span>
 <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">obj</span><span class="p">)</span>          <span class="c1">// {"baz:"baz,"toString":null,"valueOf":null}</span>
@@ -138,14 +139,15 @@
   <span class="na">valueOf</span><span class="p">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="s1">'bar'</span><span class="p">;</span> <span class="p">}</span>
 <span class="p">};</span>
 
-<span class="nx">obj</span><span class="p">.</span><span class="nx">valueOf</span> <span class="o">=</span> <span class="kc">null</span>
+<span class="nx">obj</span><span class="p">.</span><span class="nx">valueOf</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
 
 <span class="nb">String</span><span class="p">(</span><span class="nx">obj</span><span class="p">)</span>                  <span class="c1">// foo</span>
 <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">obj</span><span class="p">)</span>          <span class="c1">// {"baz:"baz}</span>
 <span class="nx">obj</span><span class="p">.</span><span class="nx">toString</span><span class="p">()</span>               <span class="c1">// foo</span>
 
 <span class="nx">obj</span> <span class="o">+</span> <span class="s1">'qux'</span>                  <span class="c1">// fooqux</span>
-<span class="p">[</span><span class="nx">obj</span><span class="p">,</span> <span class="s1">'qux'</span><span class="p">].</span><span class="nx">join</span><span class="p">(</span><span class="s1">''</span><span class="p">)</span>        <span class="c1">// fooqux</span>
+<span class="kd">const</span> <span class="nx">arr</span> <span class="o">=</span> <span class="p">[</span><span class="nx">obj</span><span class="p">,</span> <span class="s1">'qux'</span><span class="p">];</span>
+<span class="nx">arr</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="nx">arr</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>              <span class="c1">// fooqux</span>
 </code></pre></div></div>
 <p>Funny enough, or not, the concatenation with the <code class="highlighter-rouge">+</code> operator also uses <code class="highlighter-rouge">toString</code> as a fallback if <code class="highlighter-rouge">valueOf</code> is not available.
 It’s the exact opposite behavior as with the string conversion.</p>

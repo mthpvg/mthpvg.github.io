@@ -42,14 +42,15 @@ JSON.stringify(obj)          // {"baz:"baz}
 obj.toString()               // foo
 
 obj + 'qux'                  // barqux
-[obj, 'qux'].join('')        // fooqux
+const arr = [obj, 'qux'];
+arr[0] + arr[1]              // fooqux
 ```
 - We can see that the `String` function calls the `toString` method behind the scene.
 - When using the `+` operator the concatenation uses the ` valueOf` method.
 - On the other hand `[obj, 'qux']` is calling the `toString` method.
 
 ```js
-obj.toString = null
+obj.toString = null;
 
 String(obj)                  // bar
 JSON.stringify(obj)          // {"baz:"baz,"toString":null}
@@ -58,7 +59,7 @@ obj.toString()               // obj.toString is not a function
 The `toString` method is not available so it falls back to the `valueOf` method.
 
 ```js
-obj.valueOf = null
+obj.valueOf = null;
 
 String(obj)                  // Cannot convert object to primitive value
 JSON.stringify(obj)          // {"baz:"baz,"toString":null,"valueOf":null}
@@ -73,14 +74,15 @@ const obj = {
   valueOf: function () { return 'bar'; }
 };
 
-obj.valueOf = null
+obj.valueOf = null;
 
 String(obj)                  // foo
 JSON.stringify(obj)          // {"baz:"baz}
 obj.toString()               // foo
 
 obj + 'qux'                  // fooqux
-[obj, 'qux'].join('')        // fooqux
+const arr = [obj, 'qux'];
+arr[0] + arr[1]              // fooqux
 ```
 Funny enough, or not, the concatenation with the `+` operator also uses `toString` as a fallback if `valueOf` is not available.
 It's the exact opposite behavior as with the string conversion.
