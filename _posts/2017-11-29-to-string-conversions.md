@@ -4,7 +4,7 @@ title:  "To string conversions"
 date:   2017-11-29 02:14:00 -0400
 categories: javascript details
 ---
-Note: the comments on the right side is the return value of the left side.
+Note: the comment on the right side is the return value of the left side statement.
 ```js
 String('foo')                 // foo
 JSON.stringify('foo')         // "foo"
@@ -46,7 +46,7 @@ const arr = [obj, 'qux'];
 arr[0] + arr[1]              // fooqux
 ```
 - We can see that the `String` function calls the `toString` method behind the scene.
-- When using the `+` operator the concatenation uses the ` valueOf` method.
+- When using the `+` operator the concatenation uses the `valueOf` method.
 - On the other hand `[obj, 'qux']` is calling the `toString` method.
 
 ```js
@@ -56,7 +56,7 @@ String(obj)                  // bar
 JSON.stringify(obj)          // {"baz:"baz,"toString":null}
 obj.toString()               // obj.toString is not a function
 ```
-The `toString` method is not available so it falls back to the `valueOf` method.
+The `toString` method is not available so the `String` function falls back to the `valueOf` method.
 
 ```js
 obj.valueOf = null;
@@ -76,15 +76,11 @@ const obj = {
 
 obj.valueOf = null;
 
-String(obj)                  // foo
-JSON.stringify(obj)          // {"baz:"baz}
-obj.toString()               // foo
-
 obj + 'qux'                  // fooqux
 const arr = [obj, 'qux'];
 arr[0] + arr[1]              // fooqux
 ```
-Funny enough, or not, the concatenation with the `+` operator also uses `toString` as a fallback if `valueOf` is not available.
-It's the exact opposite behavior as with the string conversion.
+Funny enough, or not, the concatenation with the `+` operator uses `toString` as a fallback if `valueOf` is not available.
+It's the exact opposite behavior as with the string conversion by the `String` function.
 
 Source: http://www.adequatelygood.com/Object-to-Primitive-Conversions-in-JavaScript.html

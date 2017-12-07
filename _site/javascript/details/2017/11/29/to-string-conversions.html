@@ -75,7 +75,7 @@
   </header>
 
   <div class="post-content" itemprop="articleBody">
-    <p>Note: the comments on the right side is the return value of the left side.</p>
+    <p>Note: the comment on the right side is the return value of the left side statement.</p>
 <div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">String</span><span class="p">(</span><span class="s1">'foo'</span><span class="p">)</span>                 <span class="c1">// foo</span>
 <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="s1">'foo'</span><span class="p">)</span>         <span class="c1">// "foo"</span>
 <span class="s1">'foo'</span><span class="p">.</span><span class="nx">toString</span><span class="p">()</span>              <span class="c1">// foo</span>
@@ -113,7 +113,7 @@
 </code></pre></div></div>
 <ul>
   <li>We can see that the <code class="highlighter-rouge">String</code> function calls the <code class="highlighter-rouge">toString</code> method behind the scene.</li>
-  <li>When using the <code class="highlighter-rouge">+</code> operator the concatenation uses the ` valueOf` method.</li>
+  <li>When using the <code class="highlighter-rouge">+</code> operator the concatenation uses the <code class="highlighter-rouge">valueOf</code> method.</li>
   <li>On the other hand <code class="highlighter-rouge">[obj, 'qux']</code> is calling the <code class="highlighter-rouge">toString</code> method.</li>
 </ul>
 
@@ -123,7 +123,7 @@
 <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">obj</span><span class="p">)</span>          <span class="c1">// {"baz:"baz,"toString":null}</span>
 <span class="nx">obj</span><span class="p">.</span><span class="nx">toString</span><span class="p">()</span>               <span class="c1">// obj.toString is not a function</span>
 </code></pre></div></div>
-<p>The <code class="highlighter-rouge">toString</code> method is not available so it falls back to the <code class="highlighter-rouge">valueOf</code> method.</p>
+<p>The <code class="highlighter-rouge">toString</code> method is not available so the <code class="highlighter-rouge">String</code> function falls back to the <code class="highlighter-rouge">valueOf</code> method.</p>
 
 <div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">obj</span><span class="p">.</span><span class="nx">valueOf</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
 
@@ -141,16 +141,12 @@
 
 <span class="nx">obj</span><span class="p">.</span><span class="nx">valueOf</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
 
-<span class="nb">String</span><span class="p">(</span><span class="nx">obj</span><span class="p">)</span>                  <span class="c1">// foo</span>
-<span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">obj</span><span class="p">)</span>          <span class="c1">// {"baz:"baz}</span>
-<span class="nx">obj</span><span class="p">.</span><span class="nx">toString</span><span class="p">()</span>               <span class="c1">// foo</span>
-
 <span class="nx">obj</span> <span class="o">+</span> <span class="s1">'qux'</span>                  <span class="c1">// fooqux</span>
 <span class="kd">const</span> <span class="nx">arr</span> <span class="o">=</span> <span class="p">[</span><span class="nx">obj</span><span class="p">,</span> <span class="s1">'qux'</span><span class="p">];</span>
 <span class="nx">arr</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="nx">arr</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>              <span class="c1">// fooqux</span>
 </code></pre></div></div>
-<p>Funny enough, or not, the concatenation with the <code class="highlighter-rouge">+</code> operator also uses <code class="highlighter-rouge">toString</code> as a fallback if <code class="highlighter-rouge">valueOf</code> is not available.
-It’s the exact opposite behavior as with the string conversion.</p>
+<p>Funny enough, or not, the concatenation with the <code class="highlighter-rouge">+</code> operator uses <code class="highlighter-rouge">toString</code> as a fallback if <code class="highlighter-rouge">valueOf</code> is not available.
+It’s the exact opposite behavior as with the string conversion by the <code class="highlighter-rouge">String</code> function.</p>
 
 <p>Source: http://www.adequatelygood.com/Object-to-Primitive-Conversions-in-JavaScript.html</p>
 
