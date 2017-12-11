@@ -1,4 +1,56 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.6.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2017-12-07T08:48:17+01:00</updated><id>http://localhost:4000/</id><title type="html">mthpvg</title><subtitle>Hey Mathieu, what you're googling now is probably already in here. Love. Mathieu.</subtitle><entry><title type="html">Metasyntactic variable</title><link href="http://localhost:4000/computer-science/2017/12/07/metasyntactic-variable.html" rel="alternate" type="text/html" title="Metasyntactic variable" /><published>2017-12-07T07:14:00+01:00</published><updated>2017-12-07T07:14:00+01:00</updated><id>http://localhost:4000/computer-science/2017/12/07/metasyntactic-variable</id><content type="html" xml:base="http://localhost:4000/computer-science/2017/12/07/metasyntactic-variable.html">&lt;p&gt;If you need more than &lt;code class=&quot;highlighter-rouge&quot;&gt;foo&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;bar&lt;/code&gt; as placeholder in your snippets, here are some more:&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.6.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2017-12-11T20:36:24+01:00</updated><id>http://localhost:4000/</id><title type="html">mthpvg</title><subtitle>Hey Mathieu, what you're googling now is probably already in here. Love. Mathieu.</subtitle><entry><title type="html">Stack and queue</title><link href="http://localhost:4000/javascript/2017/12/11/stack-and-queue.html" rel="alternate" type="text/html" title="Stack and queue" /><published>2017-12-11T07:14:00+01:00</published><updated>2017-12-11T07:14:00+01:00</updated><id>http://localhost:4000/javascript/2017/12/11/stack-and-queue</id><content type="html" xml:base="http://localhost:4000/javascript/2017/12/11/stack-and-queue.html">&lt;h2 id=&quot;stack&quot;&gt;Stack&lt;/h2&gt;
+
+&lt;p&gt;A stack is like a pile of plates. When you just cleaned a plate, you put it at the top of the pile. When you need one, you take the first one at the top of the pile.&lt;/p&gt;
+
+&lt;p&gt;It’s also called LIFO: Last In First Out. And every time I do the dishes, it makes me wonder: Should I shuffle the plates?&lt;/p&gt;
+
+&lt;p&gt;We can slightly rephrase that:&lt;/p&gt;
+
+&lt;p&gt;When you just cleaned a plate, you &lt;strong&gt;push&lt;/strong&gt; it at the top of the &lt;strong&gt;stack&lt;/strong&gt;. When you need one, you &lt;strong&gt;pop&lt;/strong&gt; the first one at the top of the &lt;strong&gt;stack&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;In Javascript the Array object can be used as a &lt;strong&gt;stack&lt;/strong&gt; out of the box.&lt;/p&gt;
+&lt;div class=&quot;language-js highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;stack&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[]&lt;/span&gt;
+
+&lt;span class=&quot;nx&quot;&gt;stack&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;push&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'plate 0'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;stack&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;push&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'plate 1'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;stack&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;push&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'plate 2'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+
+&lt;span class=&quot;nx&quot;&gt;stack&lt;/span&gt;        &lt;span class=&quot;c1&quot;&gt;// ['plate 0', 'plate 1', 'plate 2']&lt;/span&gt;
+
+&lt;span class=&quot;nx&quot;&gt;stack&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;pop&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// plate 2&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;stack&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;pop&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// plate 1&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;stack&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;pop&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// plate 0&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;stack&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;pop&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// undefined&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;queue&quot;&gt;Queue&lt;/h2&gt;
+
+&lt;p&gt;A queue is like the queue at the tax administration office. Everyone takes a ticket with a number and wait for their number to be called.&lt;/p&gt;
+
+&lt;p&gt;It’s called FIFO: First In First Out.&lt;/p&gt;
+
+&lt;p&gt;As with the stack, the Array object can be used as a &lt;strong&gt;queue&lt;/strong&gt; out of the box too.&lt;/p&gt;
+
+&lt;div class=&quot;language-js highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;queue&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[]&lt;/span&gt;
+
+&lt;span class=&quot;nx&quot;&gt;queue&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;unshift&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'person 0'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;queue&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;unshift&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'person 1'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;queue&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;unshift&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'person 2'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+
+&lt;span class=&quot;nx&quot;&gt;queue&lt;/span&gt;         &lt;span class=&quot;c1&quot;&gt;// ['person 2', 'person 1', 'person 0']&lt;/span&gt;
+
+&lt;span class=&quot;nx&quot;&gt;queue&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;pop&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;  &lt;span class=&quot;c1&quot;&gt;// person 0&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;queue&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;pop&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;  &lt;span class=&quot;c1&quot;&gt;// person 1&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;queue&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;pop&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;  &lt;span class=&quot;c1&quot;&gt;// person 2&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;queue&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;pop&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;  &lt;span class=&quot;c1&quot;&gt;// undefined&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Sources:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;http://www.i-programmer.info/programming/javascript/1674-javascript-data-structures-stacks-queues-and-deques.html&lt;/li&gt;
+  &lt;li&gt;https://code.tutsplus.com/articles/data-structures-with-javascript-stack-and-queue–cms-23348&lt;/li&gt;
+  &lt;li&gt;https://initjs.org/implement-a-queue-in-javascript-de306a8821c&lt;/li&gt;
+&lt;/ul&gt;</content><author><name></name></author><summary type="html">Stack</summary></entry><entry><title type="html">Metasyntactic variable</title><link href="http://localhost:4000/computer-science/2017/12/07/metasyntactic-variable.html" rel="alternate" type="text/html" title="Metasyntactic variable" /><published>2017-12-07T07:14:00+01:00</published><updated>2017-12-07T07:14:00+01:00</updated><id>http://localhost:4000/computer-science/2017/12/07/metasyntactic-variable</id><content type="html" xml:base="http://localhost:4000/computer-science/2017/12/07/metasyntactic-variable.html">&lt;p&gt;If you need more than &lt;code class=&quot;highlighter-rouge&quot;&gt;foo&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;bar&lt;/code&gt; as placeholder in your snippets, here are some more:&lt;/p&gt;
 &lt;ul&gt;
   &lt;li&gt;foo&lt;/li&gt;
   &lt;li&gt;bar&lt;/li&gt;

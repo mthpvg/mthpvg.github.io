@@ -28,6 +28,13 @@ rougify style github > assets/css/syntax.css
 ### object
 `console.log(Object.values(obj));`
 
+### Binary Tree
+https://initjs.org/implement-a-binary-search-tree-in-javascript-952a44ee7c26
+
+### Linked list
+
+### hash tables
+
 ### Tone analyzer
 - IBM
 - Azure
@@ -39,6 +46,10 @@ https://github.com/kingarthurpt/atom-show-project-name
 ### Tree shake c3.js
 Because 180kb minified is a lot.
 https://gionkunz.github.io/chartist-js/
+try d3
+
+### N-API
+https://medium.com/the-node-js-collection/speed-up-your-node-js-app-with-native-addons-5e76a06f4a40
 
 ### JS riddles
 https://www.youtube.com/watch?v=D-juPGb7EKY&t=609s
