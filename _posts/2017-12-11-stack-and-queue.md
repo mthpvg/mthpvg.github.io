@@ -36,6 +36,10 @@ A queue is like the queue at the tax administration office. Everyone takes a tic
 
 It's called FIFO: First In First Out.
 
+There is a line of person. When a new person enters, they move to the tail of the line. When the cleric calls a person, a person detach themself from the head of the line.
+
+The rephrasing does not make a lot of sense here.
+
 As with the stack, the Array object can be used as a **queue** out of the box too.
 
 ```js
