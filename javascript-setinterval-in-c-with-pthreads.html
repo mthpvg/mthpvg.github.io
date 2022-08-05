@@ -1,0 +1,408 @@
+
+    <!DOCTYPE html>
+    <html>
+      <head>
+      <title>JavaScript setInterval in C with pthreads</title>
+      <meta charset="utf-8">
+      <meta name="author" content="Mathieu Pavageau">
+      <meta name="description" content="Four experiences to appreciate JavaScript as a modern high-level programming language.">
+      <meta name="date" content="2020-11-18" scheme="YYYY-MM-DD">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+
+      <meta name="twitter:card" content="summary_large_image">
+      <meta name="twitter:creator" content="@mthpvg">
+      <meta name="twitter:title" content="JavaScript setInterval in C with pthreads">
+      <meta name="twitter:description" content="Four experiences to appreciate JavaScript as a modern high-level programming language.">
+      <meta name="twitter:image" content="undefined">
+      <meta name="twitter:image:alt" content="undefined">
+
+      <meta property="og:url" content="https://www.mthpvg.com/javascript-setinterval-in-c-with-pthreads" />
+      <meta property="og:type" content="article" />
+      <meta property="og:title" content="JavaScript setInterval in C with pthreads" />
+      <meta property="og:description" content="Four experiences to appreciate JavaScript as a modern high-level programming language." />
+      <meta property="og:image" content="undefined" />
+
+      <style>/*
+github.com style (c) Vasily Polovnyov <vast@whiteants.net>
+*/
+
+.hljs {
+  display: block;
+  overflow-x: auto;
+  padding: 0.5em;
+  color: #333;
+  background: #f8f8f8;
+}
+
+.hljs-comment,
+.hljs-quote {
+  color: #998;
+  font-style: italic;
+}
+
+.hljs-keyword,
+.hljs-selector-tag,
+.hljs-subst {
+  color: #333;
+  font-weight: bold;
+}
+
+.hljs-number,
+.hljs-literal,
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag .hljs-attr {
+  color: #008080;
+}
+
+.hljs-string,
+.hljs-doctag {
+  color: #d14;
+}
+
+.hljs-title,
+.hljs-section,
+.hljs-selector-id {
+  color: #900;
+  font-weight: bold;
+}
+
+.hljs-subst {
+  font-weight: normal;
+}
+
+.hljs-type,
+.hljs-class .hljs-title {
+  color: #458;
+  font-weight: bold;
+}
+
+.hljs-tag,
+.hljs-name,
+.hljs-attribute {
+  color: #000080;
+  font-weight: normal;
+}
+
+.hljs-regexp,
+.hljs-link {
+  color: #009926;
+}
+
+.hljs-symbol,
+.hljs-bullet {
+  color: #990073;
+}
+
+.hljs-built_in,
+.hljs-builtin-name {
+  color: #0086b3;
+}
+
+.hljs-meta {
+  color: #999;
+  font-weight: bold;
+}
+
+.hljs-deletion {
+  background: #fdd;
+}
+
+.hljs-addition {
+  background: #dfd;
+}
+
+.hljs-emphasis {
+  font-style: italic;
+}
+
+.hljs-strong {
+  font-weight: bold;
+}
+
+body {
+  margin: 0px;
+}
+
+/* NAVBAR */
+.navbar {
+  font-family: monospace;
+  position: fixed;
+  top: 0;
+  background-color: rgb(241, 248, 255);
+  width: 100%;
+  z-index: 1;
+}
+
+.navbar ul li {
+  display: inline;
+  margin-right: 32px;
+}
+
+.navbar ul li .active {
+  text-decoration: underline;
+}
+
+
+/* LINKS */
+
+.navbar a, a.btn {
+  text-decoration: none;
+  color: rgba(0, 0, 0, 0.9);
+}
+
+a:hover {
+  color: rgba(128, 128, 128, 0.9);
+}
+
+
+/* SHEET */
+.sheet {
+  /* That margin is for the fixed navbar */
+  font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, Ubuntu;
+  margin-top: 6rem;
+  margin-right: auto;
+  margin-left: auto;
+  max-width: 900px;
+  width: 98%;
+  color: rgba(0, 0, 0, 0.9);
+  margin-bottom: 8rem;
+}
+
+a {
+  text-decoration: none;
+  color: rgba(0, 0, 0, 0.9);
+}
+
+.my-article {
+  margin-bottom: 40px;
+}
+
+.description {
+  font-weight: lighter;
+}
+
+.no-margin {
+  margin: 0px 0px 4px 0px;
+}
+
+.date {
+  font-size: 0.8em;
+  color: rgba(0, 0, 0, 0.4)
+}
+
+/* h1 {
+  font-weight: normal;
+}
+
+h2 {
+  font-weight: lighter;
+} */
+
+.container-2-1 {
+  width: 100%;
+  height: 0;
+  padding-top: 50%;
+  position: relative;
+}
+
+.container-1-1 {
+  width: 100%;
+  height: 0;
+  padding-top: 100%;
+  position: relative;
+}
+
+.img-2-1 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+
+.img-1-1 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+
+.small {
+  max-width: 600px;
+  margin: 0px auto;
+}
+
+
+/* KEYWORDS */
+.keywords {
+  line-height: 2rem;
+}
+.keyword {
+  padding: 0.1rem 0.5rem;
+  margin-right: 0.5rem;
+}
+.green {
+  background-color: rgb(209, 236, 156);
+  /* color: rgb(80, 119, 2); */
+}
+.neutral-grey {
+  background-color: rgb(241, 248, 255);
+}
+</style>
+      <script type="text/javascript">
+        var _paq = window._paq || [];
+        /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+        _paq.push(["setDocumentTitle", document.domain + "/" + document.title]);
+        _paq.push(["setCookieDomain", "*.www.mthpvg.com"]);
+        _paq.push(['trackPageView']);
+        _paq.push(['enableLinkTracking']);
+        (function() {
+          var u="https://unikkode-analytics.fr/";
+          _paq.push(['setTrackerUrl', u+'matomo.php']);
+          _paq.push(['setSiteId', '22']);
+          var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+          g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+        })();
+      </script>
+      </head>
+      <body>
+        
+  <div class="navbar">
+    <ul>
+      <li>
+        <a class="active" href="/">Blog</a>
+      </li>
+      <li>
+        <a href="/projects">Projects</a>
+      </li>
+      <li>
+        <a href="/resume">Resume</a>
+      </li>
+      <li>
+      <a href="/about">About</a>
+      </li>
+    </ul>
+  </div>
+        <div class="sheet"><h1>JavaScript setInterval in C with pthreads</h1>
+<p>The goal is to output the string <em>bar</em> 4 times with a one second delay between each output:</p>
+<pre><code>bar
+bar
+bar
+bar
+</code></pre>
+<p>In JavaScript:</p>
+<pre><code class="hljs language-js"><span class="hljs-keyword">let</span> count = <span class="hljs-number">0</span>
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">foo</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">if</span> (++count >= <span class="hljs-number">4</span>) clearInterval(interval)
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'bar'</span>)
+}
+
+<span class="hljs-keyword">const</span> interval = setInterval(foo, <span class="hljs-number">1000</span>) <span class="hljs-comment">// every second</span></code></pre>
+<p>To replicate this in C we turn to <em>pthread</em> a library that handle the lifecycle of pthreads.</p>
+<p>To compile the <em>setInterval.c</em> file with pthread:</p>
+<pre><code class="hljs language-bash">gcc -Wall setInterval.c -lpthread -o setInterval.out</code></pre>
+<h2>First attempt</h2>
+<pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;stdio.h>   // printf</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;pthread.h> // pthread_t</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;unistd.h>  // sleep</span></span>
+
+<span class="hljs-function"><span class="hljs-keyword">void</span> *<span class="hljs-title">foo</span><span class="hljs-params">(<span class="hljs-keyword">void</span> *vargp)</span> </span>{
+  <span class="hljs-keyword">int</span> count = <span class="hljs-number">0</span>;
+  <span class="hljs-keyword">while</span>(count++ &#x3C; <span class="hljs-number">4</span>) {
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">"bar\n"</span>);
+    sleep(<span class="hljs-number">1</span>); <span class="hljs-comment">// one second</span>
+  }
+  <span class="hljs-keyword">return</span> <span class="hljs-literal">NULL</span>;
+}
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{
+  <span class="hljs-keyword">pthread_t</span> thread_foo;
+  pthread_create(&#x26;thread_foo, <span class="hljs-literal">NULL</span>, foo, <span class="hljs-literal">NULL</span>);
+  pthread_join(thread_foo, <span class="hljs-literal">NULL</span>);
+  <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}</code></pre>
+<p>In the main function is where the main process kicks off. In that process we create a pthread to execute the <em>foo</em> function. Since we do not want the main process to exit right away we use the function <em>pthread_join</em> function to pause the calling thread, here the main process so it lets the pthread finish its work.</p>
+<h2>Second attempt</h2>
+<pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;stdio.h>   // printf</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;pthread.h> // pthread_t</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;unistd.h>  // sleep</span></span>
+
+<span class="hljs-function"><span class="hljs-keyword">void</span> *<span class="hljs-title">foo</span><span class="hljs-params">(<span class="hljs-keyword">void</span> *vargp)</span> </span>{
+  <span class="hljs-keyword">int</span> count = <span class="hljs-number">0</span>;
+  <span class="hljs-keyword">while</span>(<span class="hljs-number">1</span>) {
+    <span class="hljs-keyword">if</span> (count++ >= <span class="hljs-number">4</span>) pthread_exit(<span class="hljs-literal">NULL</span>);
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">"bar\n"</span>);
+    sleep(<span class="hljs-number">1</span>); <span class="hljs-comment">// one second</span>
+  }
+  <span class="hljs-keyword">return</span> <span class="hljs-literal">NULL</span>;
+}
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{
+  <span class="hljs-keyword">pthread_t</span> thread_foo;
+  pthread_create(&#x26;thread_foo, <span class="hljs-literal">NULL</span>, foo, <span class="hljs-literal">NULL</span>);
+  pthread_join(thread_foo, <span class="hljs-literal">NULL</span>);
+  <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}</code></pre>
+<p>Here we call the <em>pthread_exit</em> function before the foo function actually return. The pthread can exit itself.</p>
+<h2>Third attempt</h2>
+<pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;stdio.h>   // printf</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;pthread.h> // pthread_t</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;unistd.h>  // sleep</span></span>
+
+<span class="hljs-function"><span class="hljs-keyword">void</span> *<span class="hljs-title">foo</span><span class="hljs-params">(<span class="hljs-keyword">void</span> *vargp)</span> </span>{
+  <span class="hljs-keyword">while</span>(<span class="hljs-number">1</span>) {
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">"bar\n"</span>);
+    sleep(<span class="hljs-number">1</span>); <span class="hljs-comment">// one second</span>
+  }
+  <span class="hljs-keyword">return</span> <span class="hljs-literal">NULL</span>;
+}
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{
+  <span class="hljs-keyword">pthread_t</span> thread_foo;
+  pthread_create(&#x26;thread_foo, <span class="hljs-literal">NULL</span>, foo, <span class="hljs-literal">NULL</span>);
+  sleep(<span class="hljs-number">4</span>);
+  pthread_cancel(thread_foo);
+  <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}</code></pre>
+<p>In this example the main process is cancelling the pthread after waiting for 4 seconds with the <em>pthread_cancel</em> function.</p>
+<h2>Fourth attempt</h2>
+<pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;stdio.h>   // printf</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;pthread.h> // pthread_t</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;unistd.h>  // sleep</span></span>
+
+<span class="hljs-keyword">int</span> RUNNING = <span class="hljs-number">1</span>;
+
+<span class="hljs-function"><span class="hljs-keyword">void</span> *<span class="hljs-title">foo</span><span class="hljs-params">(<span class="hljs-keyword">void</span> *vargp)</span> </span>{
+  <span class="hljs-keyword">while</span>(RUNNING) {
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">"bar\n"</span>);
+    sleep(<span class="hljs-number">1</span>); <span class="hljs-comment">// one second</span>
+  }
+  <span class="hljs-keyword">return</span> <span class="hljs-literal">NULL</span>;
+}
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{
+  <span class="hljs-keyword">pthread_t</span> thread_foo;
+  pthread_create(&#x26;thread_foo, <span class="hljs-literal">NULL</span>, foo, <span class="hljs-literal">NULL</span>);
+  sleep(<span class="hljs-number">4</span>);
+  RUNNING = <span class="hljs-number">0</span>;
+  pthread_join(thread_foo, <span class="hljs-literal">NULL</span>);
+  <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}</code></pre>
+<p>We use the <em>RUNNING</em> global variable to communicate with the thread. On one hand that is considered bad practice.
+On the other hand it compiles and it has some upsides:</p>
+<ul>
+<li>the pthread setup will not be interrupted</li>
+<li>the pthread instructions execution will not be interrupted</li>
+<li>the pthread teardown will not be interrupted</li>
+</ul>
+<h2>Note</h2>
+<p>For clarity purposes we removed all error handling in C:</p>
+<pre><code class="hljs language-c">  <span class="hljs-keyword">if</span>(pthread_join(thread_foo, <span class="hljs-literal">NULL</span>) > <span class="hljs-number">0</span>) {
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">"ERROR -> the pthread can not join"</span>);
+    <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;
+  }</code></pre>
+</div>
+      </body>
+    </html>
+  

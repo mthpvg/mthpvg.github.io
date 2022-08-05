@@ -1,0 +1,420 @@
+
+    <!DOCTYPE html>
+    <html>
+      <head>
+      <title>Get Spotify on that old Hi-Fi</title>
+      <meta charset="utf-8">
+      <meta name="author" content="Mathieu Pavageau">
+      <meta name="description" content="A hassle-free DIY Sonos speaker made with Balena, a Raspberry Pi 4 and a HifiBerry DAC. It also works with Apple Airplay.">
+      <meta name="date" content="2020-04-10" scheme="YYYY-MM-DD">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+
+      <meta name="twitter:card" content="summary_large_image">
+      <meta name="twitter:creator" content="@mthpvg">
+      <meta name="twitter:title" content="Get Spotify on that old Hi-Fi">
+      <meta name="twitter:description" content="A hassle-free DIY Sonos speaker made with Balena, a Raspberry Pi 4 and a HifiBerry DAC. It also works with Apple Airplay.">
+      <meta name="twitter:image" content="https://res.cloudinary.com/gphos/image/upload/c_scale,w_900/v1587221059/blog/raspberry-pi-and-hifiberry-dac-plugged-to-hifi.jpg">
+      <meta name="twitter:image:alt" content="Raspberry Pi 4 and its DAC hat from HifiBerry">
+
+      <meta property="og:url" content="https://www.mthpvg.com/get-spotify-on-that-old-hi-fi" />
+      <meta property="og:type" content="article" />
+      <meta property="og:title" content="Get Spotify on that old Hi-Fi" />
+      <meta property="og:description" content="A hassle-free DIY Sonos speaker made with Balena, a Raspberry Pi 4 and a HifiBerry DAC. It also works with Apple Airplay." />
+      <meta property="og:image" content="https://res.cloudinary.com/gphos/image/upload/c_scale,w_900/v1587221059/blog/raspberry-pi-and-hifiberry-dac-plugged-to-hifi.jpg" />
+
+      <style>/*
+github.com style (c) Vasily Polovnyov <vast@whiteants.net>
+*/
+
+.hljs {
+  display: block;
+  overflow-x: auto;
+  padding: 0.5em;
+  color: #333;
+  background: #f8f8f8;
+}
+
+.hljs-comment,
+.hljs-quote {
+  color: #998;
+  font-style: italic;
+}
+
+.hljs-keyword,
+.hljs-selector-tag,
+.hljs-subst {
+  color: #333;
+  font-weight: bold;
+}
+
+.hljs-number,
+.hljs-literal,
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag .hljs-attr {
+  color: #008080;
+}
+
+.hljs-string,
+.hljs-doctag {
+  color: #d14;
+}
+
+.hljs-title,
+.hljs-section,
+.hljs-selector-id {
+  color: #900;
+  font-weight: bold;
+}
+
+.hljs-subst {
+  font-weight: normal;
+}
+
+.hljs-type,
+.hljs-class .hljs-title {
+  color: #458;
+  font-weight: bold;
+}
+
+.hljs-tag,
+.hljs-name,
+.hljs-attribute {
+  color: #000080;
+  font-weight: normal;
+}
+
+.hljs-regexp,
+.hljs-link {
+  color: #009926;
+}
+
+.hljs-symbol,
+.hljs-bullet {
+  color: #990073;
+}
+
+.hljs-built_in,
+.hljs-builtin-name {
+  color: #0086b3;
+}
+
+.hljs-meta {
+  color: #999;
+  font-weight: bold;
+}
+
+.hljs-deletion {
+  background: #fdd;
+}
+
+.hljs-addition {
+  background: #dfd;
+}
+
+.hljs-emphasis {
+  font-style: italic;
+}
+
+.hljs-strong {
+  font-weight: bold;
+}
+
+body {
+  margin: 0px;
+}
+
+/* NAVBAR */
+.navbar {
+  font-family: monospace;
+  position: fixed;
+  top: 0;
+  background-color: rgb(241, 248, 255);
+  width: 100%;
+  z-index: 1;
+}
+
+.navbar ul li {
+  display: inline;
+  margin-right: 32px;
+}
+
+.navbar ul li .active {
+  text-decoration: underline;
+}
+
+
+/* LINKS */
+
+.navbar a, a.btn {
+  text-decoration: none;
+  color: rgba(0, 0, 0, 0.9);
+}
+
+a:hover {
+  color: rgba(128, 128, 128, 0.9);
+}
+
+
+/* SHEET */
+.sheet {
+  /* That margin is for the fixed navbar */
+  font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, Ubuntu;
+  margin-top: 6rem;
+  margin-right: auto;
+  margin-left: auto;
+  max-width: 900px;
+  width: 98%;
+  color: rgba(0, 0, 0, 0.9);
+  margin-bottom: 8rem;
+}
+
+a {
+  text-decoration: none;
+  color: rgba(0, 0, 0, 0.9);
+}
+
+.my-article {
+  margin-bottom: 40px;
+}
+
+.description {
+  font-weight: lighter;
+}
+
+.no-margin {
+  margin: 0px 0px 4px 0px;
+}
+
+.date {
+  font-size: 0.8em;
+  color: rgba(0, 0, 0, 0.4)
+}
+
+/* h1 {
+  font-weight: normal;
+}
+
+h2 {
+  font-weight: lighter;
+} */
+
+.container-2-1 {
+  width: 100%;
+  height: 0;
+  padding-top: 50%;
+  position: relative;
+}
+
+.container-1-1 {
+  width: 100%;
+  height: 0;
+  padding-top: 100%;
+  position: relative;
+}
+
+.img-2-1 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+
+.img-1-1 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+
+.small {
+  max-width: 600px;
+  margin: 0px auto;
+}
+
+
+/* KEYWORDS */
+.keywords {
+  line-height: 2rem;
+}
+.keyword {
+  padding: 0.1rem 0.5rem;
+  margin-right: 0.5rem;
+}
+.green {
+  background-color: rgb(209, 236, 156);
+  /* color: rgb(80, 119, 2); */
+}
+.neutral-grey {
+  background-color: rgb(241, 248, 255);
+}
+</style>
+      <script type="text/javascript">
+        var _paq = window._paq || [];
+        /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+        _paq.push(["setDocumentTitle", document.domain + "/" + document.title]);
+        _paq.push(["setCookieDomain", "*.www.mthpvg.com"]);
+        _paq.push(['trackPageView']);
+        _paq.push(['enableLinkTracking']);
+        (function() {
+          var u="https://unikkode-analytics.fr/";
+          _paq.push(['setTrackerUrl', u+'matomo.php']);
+          _paq.push(['setSiteId', '22']);
+          var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+          g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+        })();
+      </script>
+      </head>
+      <body>
+        
+  <div class="navbar">
+    <ul>
+      <li>
+        <a class="active" href="/">Blog</a>
+      </li>
+      <li>
+        <a href="/projects">Projects</a>
+      </li>
+      <li>
+        <a href="/resume">Resume</a>
+      </li>
+      <li>
+      <a href="/about">About</a>
+      </li>
+    </ul>
+  </div>
+        <div class="sheet"><h1>Get Spotify on that old Hi-Fi</h1>
+<h2>A hassle-free DIY Sonos speaker made with Balena, a Raspberry Pi 4 and a HifiBerry DAC</h2>
+<div class="container-2-1">
+  <img
+    class="img-2-1"
+    src="https://res.cloudinary.com/gphos/image/upload/c_scale,w_900/v1587221059/blog/raspberry-pi-and-hifiberry-dac-plugged-to-hifi.jpg"
+    srcset="https://res.cloudinary.com/gphos/image/upload/c_scale,w_1800/v1587221059/blog/raspberry-pi-and-hifiberry-dac-plugged-to-hifi.jpg 1800w,
+    https://res.cloudinary.com/gphos/image/upload/c_scale,w_1500/v1587221059/blog/raspberry-pi-and-hifiberry-dac-plugged-to-hifi.jpg 1500w,
+    https://res.cloudinary.com/gphos/image/upload/c_scale,w_1200/v1587221059/blog/raspberry-pi-and-hifiberry-dac-plugged-to-hifi.jpg 1200w,
+    https://res.cloudinary.com/gphos/image/upload/c_scale,w_900/v1587221059/blog/raspberry-pi-and-hifiberry-dac-plugged-to-hifi.jpg 900w,
+    https://res.cloudinary.com/gphos/image/upload/c_scale,w_600/v1587221059/blog/raspberry-pi-and-hifiberry-dac-plugged-to-hifi.jpg 600w,
+    https://res.cloudinary.com/gphos/image/upload/c_scale,w_450/v1587221059/blog/raspberry-pi-and-hifiberry-dac-plugged-to-hifi.jpg 450w,
+    https://res.cloudinary.com/gphos/image/upload/c_scale,w_300/v1587221059/blog/raspberry-pi-and-hifiberry-dac-plugged-to-hifi.jpg 300w"
+    sizes="(min-width: 900px) 900px"
+    alt="Raspberry Pi 4 and its DAC hat from HifiBerry">
+</div>
+<p>It also works with <strong>Apple Airplay</strong> and even as a "simple" <strong>Bluetooth speaker</strong>!</p>
+<h3>What is Balena?</h3>
+<p>From my understanding it is mainly three services.</p>
+<p><a href="https://www.balena.io/os/">Balena OS</a>: an operating system tailored for embedded devices, such as the Raspberry Pi 4, with a focus on running Docker containers.</p>
+<p><a href="https://www.balena.io/engine/">Balena Engine</a>: a Docker compatible container engine.</p>
+<p><a href="https://www.balena.io/cloud/">Balena Cloud</a>: a platform to deploy, manage and monitor IoT applications.</p>
+<h3>What is a DAC?</h3>
+<p>A <a href="https://en.wikipedia.org/wiki/Digital-to-analog_converter">DAC</a> or digital-to-analog converter is the device that converts our digital music files into analog signals for our Hi-Fi amplifier.</p>
+<h3>Prerequisites</h3>
+<p>Services</p>
+<ul>
+<li>Spotify premium account</li>
+<li>Balena free account, <a href="https://www.balena.io">register here</a></li>
+<li>Github account</li>
+</ul>
+<p>Hardware</p>
+<ul>
+<li>HiFi with RCA analog inputs</li>
+<li>2-male to 2-male RCA cable</li>
+<li>Raspberry Pi 4</li>
+<li>Raspberry pi power supply</li>
+<li>Micro SD card</li>
+<li><a href="https://www.hifiberry.com/shop/boards/hifiberry-dac-pro/">HifiBerry DAC + PRO</a>, see other <a href="https://github.com/balenalabs/balena-sound/blob/master/DAC_configuration.md">compatible DAC</a></li>
+</ul>
+<h3>Instructions</h3>
+<p>Create a balenaCloud application, set the <em>Application Name</em> to <em>sound2</em>, and set the <em>Default Device Type</em> to <em>Raspberry Pi 4</em>.</p>
+<div class="small">
+  <div class="container-2-1">
+    <img
+      class="img-2-1"
+      src="https://res.cloudinary.com/gphos/image/upload/c_scale,w_600/v1587820394/blog/create-balena-application.jpg"
+      srcset="https://res.cloudinary.com/gphos/image/upload/c_scale,w_1800/v1587820394/blog/create-balena-application.jpg 1800w,
+      https://res.cloudinary.com/gphos/image/upload/c_scale,w_1500/v1587820394/blog/create-balena-application.jpg 1500w,
+      https://res.cloudinary.com/gphos/image/upload/c_scale,w_1200/v1587820394/blog/create-balena-application.jpg 1200w,
+      https://res.cloudinary.com/gphos/image/upload/c_scale,w_900/v1587820394/blog/create-balena-application.jpg 900w,
+      https://res.cloudinary.com/gphos/image/upload/c_scale,w_600/v1587820394/blog/create-balena-application.jpg 600w,
+      https://res.cloudinary.com/gphos/image/upload/c_scale,w_450/v1587820394/blog/create-balena-application.jpg 450w,
+      https://res.cloudinary.com/gphos/image/upload/c_scale,w_300/v1587820394/blog/create-balena-application.jpg 300w"
+      sizes="(min-width: 600px) 600px"
+      alt="Create a balenaCloud application">
+  </div>
+</div>
+<p>Add a device and download the customized image.</p>
+<div class="small">
+  <div class="container-1-1">
+    <img
+      class="img-1-1"
+      src="https://res.cloudinary.com/gphos/image/upload/c_scale,w_600/v1587821283/blog/balena-add-new-device.jpg"
+      srcset="https://res.cloudinary.com/gphos/image/upload/c_scale,w_1200/v1587821283/blog/balena-add-new-device.jpg 1200w,
+      https://res.cloudinary.com/gphos/image/upload/c_scale,w_900/v1587821283/blog/balena-add-new-device.jpg 900w,
+      https://res.cloudinary.com/gphos/image/upload/c_scale,w_600/v1587821283/blog/balena-add-new-device.jpg 600w,
+      https://res.cloudinary.com/gphos/image/upload/c_scale,w_450/v1587821283/blog/balena-add-new-device.jpg 450w,
+      https://res.cloudinary.com/gphos/image/upload/c_scale,w_300/v1587821283/blog/balena-add-new-device.jpg 300w"
+      sizes="(min-width: 600px) 600px"
+      alt="Add a device and download the customized image">
+  </div>
+</div>
+<p>Flash this image to the SD card with <a href="https://www.balena.io/etcher/">Etcher</a>.</p>
+<div class="small">
+  <div class="container-2-1">
+    <img
+      class="img-2-1"
+      src="https://res.cloudinary.com/gphos/image/upload/c_scale,w_600/v1588086913/blog/etcher.jpg"
+      srcset="https://res.cloudinary.com/gphos/image/upload/c_scale,w_1800/v1588086913/blog/etcher.jpg 1800w,
+      https://res.cloudinary.com/gphos/image/upload/c_scale,w_1500/v1588086913/blog/etcher.jpg 1500w,
+      https://res.cloudinary.com/gphos/image/upload/c_scale,w_1200/v1588086913/blog/etcher.jpg 1200w,
+      https://res.cloudinary.com/gphos/image/upload/c_scale,w_900/v1588086913/blog/etcher.jpg 900w,
+      https://res.cloudinary.com/gphos/image/upload/c_scale,w_600/v1588086913/blog/etcher.jpg 600w,
+      https://res.cloudinary.com/gphos/image/upload/c_scale,w_450/v1588086913/blog/etcher.jpg 450w,
+      https://res.cloudinary.com/gphos/image/upload/c_scale,w_300/v1588086913/blog/etcher.jpg 300w"
+      sizes="(min-width: 600px) 600px"
+      alt="Flash this image to the SD card with Etcher">
+  </div>
+</div>
+<p>Raspberry Pi setup:</p>
+<ul>
+<li>Insert micro SD card</li>
+<li>Power up</li>
+<li>Wait for a minute or two</li>
+<li>Visit the <a href="https://dashboard.balena-cloud.com">Balena's dashboard</a> to see your device</li>
+</ul>
+<p>Get the Balena CLI tools</p>
+<p>If you have node:</p>
+<pre><code class="hljs language-bash">npm install balena-cli -g --production</code></pre>
+<p>If not, see <a href="https://github.com/balena-io/balena-cli/blob/master/INSTALL.md">alternatives</a>.</p>
+<p>Fetch and deploy the code</p>
+<pre><code class="hljs language-bash">git <span class="hljs-built_in">clone</span> git@github.com:balenalabs/balena-sound.git
+<span class="hljs-built_in">cd</span> balena-sound
+balena push sound2</code></pre>
+<p>Configuration in the Balena Dashboard</p>
+<ul>
+<li>Under device configuration, set <code>audio=off</code> in <code>RESIN_HOST_CONFIG_dtparam</code></li>
+<li>Add a custom variable <code>BALENA_HOST_CONFIG_dtoverlay</code> with a value of <code>hifiberry-dacplus</code></li>
+<li>Add a device environment variable: <code>SYSTEM_OUTPUT_VOLUME</code> to <code>100</code>, see <a href="https://forums.balena.io/t/problems-with-output-volume/62263">Increase Output Volume</a></li>
+</ul>
+<h3>Result</h3>
+<p>The dasboard is features rich: live logs, terminal session to the host machine, service status, environment variables and so on.</p>
+<div class="container-2-1">
+  <img
+    class="img-2-1"
+    src="https://res.cloudinary.com/gphos/image/upload/c_scale,w_900/v1589027567/blog/balena-dashboard.jpg"
+    srcset="https://res.cloudinary.com/gphos/image/upload/c_scale,w_1800/v1589027567/blog/balena-dashboard.jpg 1800w,
+    https://res.cloudinary.com/gphos/image/upload/c_scale,w_1500/v1589027567/blog/balena-dashboard.jpg 1500w,
+    https://res.cloudinary.com/gphos/image/upload/c_scale,w_1200/v1589027567/blog/balena-dashboard.jpg 1200w,
+    https://res.cloudinary.com/gphos/image/upload/c_scale,w_900/v1589027567/blog/balena-dashboard.jpg 900w,
+    https://res.cloudinary.com/gphos/image/upload/c_scale,w_600/v1589027567/blog/balena-dashboard.jpg 600w,
+    https://res.cloudinary.com/gphos/image/upload/c_scale,w_450/v1589027567/blog/balena-dashboard.jpg 450w,
+    https://res.cloudinary.com/gphos/image/upload/c_scale,w_300/v1589027567/blog/balena-dashboard.jpg 300w"
+    sizes="(min-width: 900px) 900px"
+    alt="The Balena dashboard">
+</div>
+<p>The setup is running smoothly for a couple of weeks now. The experiment is a success and the feeling is really good. For me, hardware experiments are tedious at best but mainly just painful, this time it was different.</p>
+<p><strong>Kudos to Balena for making hardware felt like software, I was at home 🙂.</strong></p>
+<h3>Source</h3>
+<p>This is a washed-out version of this <a href="https://www.balena.io/blog/turn-your-old-speakers-or-hi-fi-into-bluetooth-receivers-using-only-a-raspberry-pi/">article from Balena</a>.</p>
+</div>
+      </body>
+    </html>
+  

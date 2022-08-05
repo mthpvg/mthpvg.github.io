@@ -1,0 +1,353 @@
+
+    <!DOCTYPE html>
+    <html>
+      <head>
+      <title>Negotiating is not what I thought it was</title>
+      <meta charset="utf-8">
+      <meta name="author" content="Mathieu Pavageau">
+      <meta name="description" content="A book review of Leigh Thompson's Negociating The Sweet Spot">
+      <meta name="date" content="2020-12-29" scheme="YYYY-MM-DD">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+
+      <meta name="twitter:card" content="summary_large_image">
+      <meta name="twitter:creator" content="@mthpvg">
+      <meta name="twitter:title" content="Negotiating is not what I thought it was">
+      <meta name="twitter:description" content="A book review of Leigh Thompson's Negociating The Sweet Spot">
+      <meta name="twitter:image" content="https://res.cloudinary.com/gphos/image/upload/c_scale,w_900/v1587221059/blog/raspberry-pi-and-hifiberry-dac-plugged-to-hifi.jpg">
+      <meta name="twitter:image:alt" content="TO DO">
+
+      <meta property="og:url" content="https://www.mthpvg.com/negotiating-is-not-what-i-thought-it-was" />
+      <meta property="og:type" content="article" />
+      <meta property="og:title" content="Negotiating is not what I thought it was" />
+      <meta property="og:description" content="A book review of Leigh Thompson's Negociating The Sweet Spot" />
+      <meta property="og:image" content="https://res.cloudinary.com/gphos/image/upload/c_scale,w_900/v1587221059/blog/raspberry-pi-and-hifiberry-dac-plugged-to-hifi.jpg" />
+
+      <style>/*
+github.com style (c) Vasily Polovnyov <vast@whiteants.net>
+*/
+
+.hljs {
+  display: block;
+  overflow-x: auto;
+  padding: 0.5em;
+  color: #333;
+  background: #f8f8f8;
+}
+
+.hljs-comment,
+.hljs-quote {
+  color: #998;
+  font-style: italic;
+}
+
+.hljs-keyword,
+.hljs-selector-tag,
+.hljs-subst {
+  color: #333;
+  font-weight: bold;
+}
+
+.hljs-number,
+.hljs-literal,
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag .hljs-attr {
+  color: #008080;
+}
+
+.hljs-string,
+.hljs-doctag {
+  color: #d14;
+}
+
+.hljs-title,
+.hljs-section,
+.hljs-selector-id {
+  color: #900;
+  font-weight: bold;
+}
+
+.hljs-subst {
+  font-weight: normal;
+}
+
+.hljs-type,
+.hljs-class .hljs-title {
+  color: #458;
+  font-weight: bold;
+}
+
+.hljs-tag,
+.hljs-name,
+.hljs-attribute {
+  color: #000080;
+  font-weight: normal;
+}
+
+.hljs-regexp,
+.hljs-link {
+  color: #009926;
+}
+
+.hljs-symbol,
+.hljs-bullet {
+  color: #990073;
+}
+
+.hljs-built_in,
+.hljs-builtin-name {
+  color: #0086b3;
+}
+
+.hljs-meta {
+  color: #999;
+  font-weight: bold;
+}
+
+.hljs-deletion {
+  background: #fdd;
+}
+
+.hljs-addition {
+  background: #dfd;
+}
+
+.hljs-emphasis {
+  font-style: italic;
+}
+
+.hljs-strong {
+  font-weight: bold;
+}
+
+body {
+  margin: 0px;
+}
+
+/* NAVBAR */
+.navbar {
+  font-family: monospace;
+  position: fixed;
+  top: 0;
+  background-color: rgb(241, 248, 255);
+  width: 100%;
+  z-index: 1;
+}
+
+.navbar ul li {
+  display: inline;
+  margin-right: 32px;
+}
+
+.navbar ul li .active {
+  text-decoration: underline;
+}
+
+
+/* LINKS */
+
+.navbar a, a.btn {
+  text-decoration: none;
+  color: rgba(0, 0, 0, 0.9);
+}
+
+a:hover {
+  color: rgba(128, 128, 128, 0.9);
+}
+
+
+/* SHEET */
+.sheet {
+  /* That margin is for the fixed navbar */
+  font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, Ubuntu;
+  margin-top: 6rem;
+  margin-right: auto;
+  margin-left: auto;
+  max-width: 900px;
+  width: 98%;
+  color: rgba(0, 0, 0, 0.9);
+  margin-bottom: 8rem;
+}
+
+a {
+  text-decoration: none;
+  color: rgba(0, 0, 0, 0.9);
+}
+
+.my-article {
+  margin-bottom: 40px;
+}
+
+.description {
+  font-weight: lighter;
+}
+
+.no-margin {
+  margin: 0px 0px 4px 0px;
+}
+
+.date {
+  font-size: 0.8em;
+  color: rgba(0, 0, 0, 0.4)
+}
+
+/* h1 {
+  font-weight: normal;
+}
+
+h2 {
+  font-weight: lighter;
+} */
+
+.container-2-1 {
+  width: 100%;
+  height: 0;
+  padding-top: 50%;
+  position: relative;
+}
+
+.container-1-1 {
+  width: 100%;
+  height: 0;
+  padding-top: 100%;
+  position: relative;
+}
+
+.img-2-1 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+
+.img-1-1 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+
+.small {
+  max-width: 600px;
+  margin: 0px auto;
+}
+
+
+/* KEYWORDS */
+.keywords {
+  line-height: 2rem;
+}
+.keyword {
+  padding: 0.1rem 0.5rem;
+  margin-right: 0.5rem;
+}
+.green {
+  background-color: rgb(209, 236, 156);
+  /* color: rgb(80, 119, 2); */
+}
+.neutral-grey {
+  background-color: rgb(241, 248, 255);
+}
+</style>
+      <script type="text/javascript">
+        var _paq = window._paq || [];
+        /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+        _paq.push(["setDocumentTitle", document.domain + "/" + document.title]);
+        _paq.push(["setCookieDomain", "*.www.mthpvg.com"]);
+        _paq.push(['trackPageView']);
+        _paq.push(['enableLinkTracking']);
+        (function() {
+          var u="https://unikkode-analytics.fr/";
+          _paq.push(['setTrackerUrl', u+'matomo.php']);
+          _paq.push(['setSiteId', '22']);
+          var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+          g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+        })();
+      </script>
+      </head>
+      <body>
+        
+  <div class="navbar">
+    <ul>
+      <li>
+        <a class="active" href="/">Blog</a>
+      </li>
+      <li>
+        <a href="/projects">Projects</a>
+      </li>
+      <li>
+        <a href="/resume">Resume</a>
+      </li>
+      <li>
+      <a href="/about">About</a>
+      </li>
+    </ul>
+  </div>
+        <div class="sheet"><h1>Negotiating is not what I thought it was</h1>
+<p>A book review of Leigh Thompson's Negociating The Sweet Spot - The art of leaving nothing on the table.</p>
+<h2>The author</h2>
+<p>Leigh Thompson is a professor at the Kellogg School of Management where she directs executive education courses such as Leading High-Impact Teams, Constructive Collaboration and High-Performcance Negotiation skills.</p>
+<h2>Motivation</h2>
+<p>Up until now, negotiation was not skill I was willing to learn in the near future. Something changed while listening to a <a href="https://hbr.org/podcast/2020/08/adapting-negotiations-to-a-remote-world">podcast</a> from the Harvard Business Review Ideacast.</p>
+<h2>The quote</h2>
+<p><em>Picture two sisters sitting at a table with an orange between them. ... they both want the orange</em></p>
+<p><em>.... they realize that preserving their long-term relationship is more important that the orange. So they agree to cut the orange exactly in half ...</em></p>
+<p><em>After the dividing, one sister takes her half, squeezes out the juice, and tosses away the empty rind. Meanwhile, the other sister carefully zests her half of the orange peel and throws the juice away.</em></p>
+<p>What happened here is what the author called the <em>even-steven</em> trap, they reached a settlement and missed a better deal.</p>
+<p>This is what this book is about: going the extra mile to go beyond the easy settlement and reaching a sweeter spot.</p>
+<h2>Key points</h2>
+<ul>
+<li>
+<p><em>In economics and game theory, the closest cousin to the sweet spot concet is what is known as the Nash equilibrium, based on the pioneering work of John Nash.</em></p>
+</li>
+<li>
+<p><em>Vilfredo Pareto ... People should never settle for any outcom that both of them regard as less desirable than some other feasible outcome.</em></p>
+</li>
+<li>
+<p><em>The Paretto efficient frontier is the set of possible outcomes (settlements) that leaves no portion of the total amount of resources unallocated.</em></p>
+</li>
+<li>
+<p><em>The fixed-pie perception is the belief held by many people that whatever they want in an interpersonal sitution, the other party has completely opposing preferences.</em></p>
+</li>
+<li>
+<p><em>When people are under pressure to perform with someone from their own team, they tend to be more close-minded and inattentive to new information.</em></p>
+</li>
+<li>
+<p><em>Most negotiations are not purely fixed-sum; in fact, the majority of negotiation are variable-sum, meaning that if parties work together, they can create more joint value than if they are purely competitive. This is the idea of synergy -- that the whole can be greater than the sum of the parts. Few conflicts are purely win or lose. The gains of one party do not represent eaqual sacrificies by the other. This also applies to our perssonal relationships!</em></p>
+</li>
+<li>
+<p><em>Forget conventional wisdom</em></p>
+<ul>
+<li>let the other party talk / first-mover advantage because of anchoring</li>
+<li>split things in the middle / people don't necessarily value the same things</li>
+</ul>
+</li>
+<li>
+<p><em>Married couples were more cooperative than were ad hoc couples and reached agreements quickly, but their outcomes were of lower joint value -- i.e., more sour, less sweet! ... It's not worth disrupting the relationship.</em></p>
+</li>
+<li>
+<p><em>... teams of friends did not make for a formidable front at the negotiatiing table. In fact, they quickly settled for middle-of-the-road outcomes, presumably so they would appear to their friend as nice and reasonable person.</em></p>
+</li>
+<li>
+<p><em>among family and friends, conflict is to be avoided at all costs, even if it means a lose-lose outcome for all involved.</em></p>
+</li>
+<li>
+<p><em>Traps</em></p>
+<ul>
+<li>Don't rock the boat / settle for middle-of-the-road solutions, but often feel resentful</li>
+<li><em>We communicate in a much more indirect fashion with people we are familiar with.</em></li>
+<li>closeness-communication bias</li>
+<li>illusion of transparency "Angela shot the man with the gun"</li>
+</ul>
+</li>
+<li>
+<p><em>Egocentric bias: most people see their own contributions as more generous than what their partner gives them credit for.</em></p>
+</li>
+<li>
+<p>*... a disconnect between how sensitive we think others are. .... people believe that others are much more sensitive than they themselves are </p>
+</li>
+</ul>
+</div>
+      </body>
+    </html>
+  

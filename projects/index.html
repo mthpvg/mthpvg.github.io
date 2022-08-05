@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Mathieu's projects</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:300" rel="stylesheet">
+    <script type="text/javascript">
+      var _paq = window._paq || [];
+      /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+      _paq.push(["setDocumentTitle", document.domain + "/" + document.title]);
+      _paq.push(["setCookieDomain", "*.www.mthpvg.com"]);
+      _paq.push(['trackPageView']);
+      _paq.push(['enableLinkTracking']);
+      (function() {
+        var u="https://unikkode-analytics.fr/";
+        _paq.push(['setTrackerUrl', u+'matomo.php']);
+        _paq.push(['setSiteId', '22']);
+        var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+        g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+      })();
+    </script>
+  <link href="../projects.4d75e416.css" rel="stylesheet"></head>
+  <body>
+
+    <div class="navbar">
+      <ul>
+        <li>
+          <a href="/">Blog</a>
+        </li>
+        <li>
+          <a class="active" href="/projects">Projects</a>
+        </li>
+        <li>
+          <a href="/resume">Resume</a>
+        </li>
+        <li>
+          <a href="/about">About</a>
+        </li>
+      </ul>
+    </div>
+    <div class="sheet">
+
+      <div class="card">
+        <div class="card-txt">
+          <span class="scope">PERSONAL</span>
+          <h2>Benchmarking memory in a server</h2>
+          <p>In a program you allocate memory to store values. If the program is long running like a web server, values start to pile up in memory and at some point you run out of it. In JavaScript, the Garbage Collector (GC) removes unused values from memory automatically.</p>
+          <p>Here, the goal was to compare how the GC's algorithm has changed between different versions of V8, the JavaScript engine of Node.js (and also engine of Google Chrome).</p>
+          <p>Lesson learned: memory leaks (values that are piling up in memory) get the GC busy. And when the GC works, it stops the program. With sufficient calls, the program becomes unresponsive.</p>
+          <div class="keywords">
+            <span class="keyword green">JavaScript</span>
+            <span class="keyword green">Node.js</span>
+            <span class="keyword neutral-grey">V8</span>
+            <span class="keyword neutral-grey">c3.js</span>
+          </div>
+          <br>
+          <a class="btn" target="_blank"  href="https://docs.google.com/presentation/d/16tMooxQtrh3K9k9KQz5rBD5yj-7UPJ5gxbwS-QpUjNE/edit?usp=sharing">Get the slides</a>
+        </div>
+        <div class="card-img">
+          <img class="img" src="https://res.cloudinary.com/gphos/image/upload/c_scale,w_360/v1523804757/blog/memory-node.png">
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-txt">
+          <span class="scope">PERSONAL</span>
+          <h2>Web portal for everyday items</h2>
+          <p>The goal was to learn how search engines, such as Google, crawls/sees websites. This knowledge is called SEO (Search Engine Optimization).</p>
+          <p>In this project, I was also able to take a glimpse at how social networks, such as Facebook or Twitter, also crawl a website to extract relevant informations such as its title, its description, its teaser image etc...</p>
+          <div class="keywords">
+            <span class="keyword green">JavaScript</span>
+            <span class="keyword green">Webpack</span>
+          </div>
+          <div class="keywords">
+            <span class="keyword green">SEO</span>
+            <span class="keyword neutral-grey">Affiliate links</span>
+          </div>
+          <br>
+        </div>
+        <div class="card-img">
+          <img class="img" src="https://res.cloudinary.com/gphos/image/upload/c_scale,w_360/v1523531573/blog/turnthebox.png">
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-txt">
+          <span class="scope">PERSONAL</span>
+          <h2>Pinning travel pictures to a maps</h2>
+          <p>This tool lets you pin points on a map and then attach photos to those points. The user can create an account and from there they can create multiple maps.</p>
+          <p>Finally, once their map is ready, they can freely share a link of the map to their friends and family.</p>
+          <div class="keywords">
+            <span class="keyword green">JavaScript</span>
+            <span class="keyword green">Node.js</span>
+            <span class="keyword green">Google Maps API</span>
+          </div>
+          <div class="keywords">
+            <span class="keyword neutral-grey">MongoDB</span>
+            <span class="keyword neutral-grey">Auth0</span>
+            <span class="keyword neutral-grey">Cloudinary</span>
+          </div>
+          <br>
+          <!-- <a class="btn" target="_blank"  href="https://www.gobrow.se/iceland-5-days/with/altair">Visit the website</a> -->
+        </div>
+        <div class="card-img">
+          <img class="img" src="https://res.cloudinary.com/gphos/image/upload/c_scale,w_360/v1524079226/blog/gobrowse.png">
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-txt">
+          <span class="scope">ICONEM: ARCHAEOLOGY/DRONES</span>
+          <h2>Photos to 3D model</h2>
+          <p>Using photogrammetry softwares and hundreds or thousands of photos of a monument you can reconstruct a 3D model of that monument.</p>
+          <div class="keywords">
+            <span class="keyword green">Photogrammetry</span>
+            <span class="keyword neutral-grey">Python</span>
+            <span class="keyword neutral-grey">Linux</span>
+          </div>
+          <br>
+          <a class="btn" target="_blank"  href="https://sketchfab.com/models/018eac86cdbd4d00867d9bc6429e816b">Manipulate the 3D model</a>
+        </div>
+        <div class="card-img">
+          <img class="img" src="https://res.cloudinary.com/gphos/image/upload/c_scale,w_360/v1523530265/blog/iconem.png">
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-txt">
+          <span class="scope">LSCE: PUBLIC LABORATORY</span>
+          <h2>Coupling between two climate models</h2>
+          <p>When modelling a general climate model for our planet, scientists couple multiple models together. One for the ocean, one for the atmosphere and so on. The job here was to add an ice model for the Groenland ice cap.</p>
+          <p>The general model was the IPSL model. It is one of those that delivers reports about climate change for the United Nations.</p>
+          <div class="keywords">
+            <span class="keyword green">FORTRAN</span>
+            <span class="keyword green">Linux</span>
+            <span class="keyword neutral-grey">Python</span>
+            <span class="keyword neutral-grey">Supercomputers</span>
+          </div>
+          <br>
+        </div>
+        <div class="card-img">
+          <img class="img" src="https://res.cloudinary.com/gphos/image/upload/c_scale,w_360/v1523526945/blog/Screen_Shot_2018-04-12_at_11.55.24_AM.png">
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-txt">
+          <span class="scope">SCHLUMBERGER: OILFIELD SERVICES</span>
+          <h2>Wireline Junior Field Engineer</h2>
+          <p>4 months of training to become a field engineer in Abu Dhabi among peers from all over the world. Learning to troubleshoot, focus and deliver out of our confort zone.</p>
+          <div class="keywords">
+            <span class="keyword neutral-grey">Troubleshooting</span>
+          </div>
+        </div>
+        <div class="card-img">
+          <img class="img" src="https://res.cloudinary.com/gphos/image/upload/c_scale,w_360/v1523529137/blog/P1030915.jpg">
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-txt">
+          <span class="scope">SCHLUMBERGER</span>
+          <h2>Data monitoring and control of remote tools</h2>
+          <p>In oil wells, tools are lowered down to log multiple physical measurements: magnetic, sonic and so on.</p>
+          <p>A cable links the tools to a computer on the surface, in that computer, an acquisition software runs to log every measurements.</p>
+          <p>The job was to create an application for an Android tablet that allows data monitoring and remote control from the mobile device.</p>
+          <div class="keywords">
+            <span class="keyword green">Java</span>
+            <span class="keyword green">Android</span>
+            <span class="keyword neutral-grey">C#</span>
+            <span class="keyword neutral-grey">.NET</span>
+          </div>
+        </div>
+        <div class="card-img">
+          <img class="img" src="https://res.cloudinary.com/gphos/image/upload/c_scale,w_360/v1523781184/blog/horizontalViewersTime.png">
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-txt">
+          <span class="scope">SOFTWARE COMPETITION</span>
+          <h2>3D visualization of underground networks on a smartphone</h2>
+          <p>In Geneva, the SIG (Services Industriels de Genève) organized a <a href="https://ge.ch/sitg/evenements/journees-du-sitg/2011/concours-un-territoire-mobile">competition</a> for the best mobile application that uses their data.</p>
+          <p>We set a team of 3 and we build an app. That application finds the user location through its embedded GPS and load a 3D model of its surrounding: a map and the underground networks of water, electricity, gas and telecom.</p>
+          <div class="keywords">
+            <span class="keyword green">Java</span>
+            <span class="keyword green">Android</span>
+            <span class="keyword green">OpenGL</span>
+            <span class="keyword neutral-grey">GPS</span>
+          </div>
+        </div>
+        <a href="#"></a>
+        <div class="card-img">
+          <img class="img" src="https://res.cloudinary.com/gphos/image/upload/c_scale,w_360/v1523525165/blog/device1.png">
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-txt">
+          <span class="scope">PERSONAL</span>
+          <h2>Computer vision  with a laptop webcam</h2>
+          <p>OpenCV is an open source computer vision library from a team of really rad people at Intel. The goal was to found how easy it was to setup and use this kind of library. Thankfully at the time, a spanish person had made a really nice tutorial on the subject. Sadly, I can't get a hand on his name now.</p>
+          <p>On the picture I hold a sheet of paper with a black and white marker on it. Using that library, the program gets the video flux from the laptop's webcam and it overlays a red cube that moves when I move the sheet. It feels like magic.</p>
+          <div class="keywords">
+            <span class="keyword neutral-grey">OpenCV</span>
+            <span class="keyword neutral-grey">Augmented Reality</span>
+          </div>
+        </div>
+        <div class="card-img">
+          <img class="img" src="https://res.cloudinary.com/gphos/image/upload/c_scale,w_360/v1523462221/blog/openCV.jpg">
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-txt">
+          <span class="scope">UNIVERSITY</span>
+          <h2>Numerical carving</h2>
+          <p>Initially, it was about an exercise about the diffusion equation. But it turns out, a visualization makes it more rewarding.</p>
+          <p>Here, a virtual valley surrounding by moutains is slowly eroded revealing different layers of rocks.</p>
+          <div class="keywords">
+            <span class="keyword green">FORTRAN</span>
+          </div>
+          <br>
+          <a class="btn" target="_blank"  href="https://github.com/mthpvg/Grand-Canyon-carving-Fortran">See on Github</a>
+        </div>
+        <div class="card-img">
+          <img class="img" src="https://res.cloudinary.com/gphos/image/upload/c_scale,w_360/v1523463043/blog/grandCanyonCarvingInFortran.gif">
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-txt">
+          <span class="scope">UNIVERSITY</span>
+          <h2>Delaunay Triangulation and 3D viewer</h2>
+          <p>It starts with a cloud of points that represents a digital elevation, in green. Then, it meshes the cloud with triangles so that a surface is created, in blue. Finally, some smart trimming of the points is applied in order to get less points without losing the shapes of the digital elevation, in red.</p>
+          <div class="keywords">
+            <span class="keyword green">FORTRAN</span>
+            <span class="keyword green">OpenGL</span>
+            <span class="keyword neutral-grey">C</span>
+            <span class="keyword neutral-grey">C++</span>
+            <span class="keyword neutral-grey">Qt</span>
+          </div>
+          <br>
+          <a class="btn" target="_blank"  href="https://github.com/mthpvg/Delaunay-triangulation-topography">See on Github</a>
+        </div>
+        <div class="card-img">
+          <img class="img" src="https://res.cloudinary.com/gphos/image/upload/c_scale,w_360/v1524078983/blog/couleur_flash.png">
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-txt">
+          <span class="scope">UNIVERSITY</span>
+          <h2>Writing a compiler compiler for an oriented object programming language</h2>
+          <p>This compiler-generator was the core of an object oriented compiler. It worked with the context free grammars of the language.</p>
+          <div class="keywords">
+            <span class="keyword neutral-grey">C++</span>
+            <span class="keyword neutral-grey">BNF</span>
+          </div>
+        </div>
+        <div class="card-img">
+          <img class="img" src="https://res.cloudinary.com/gphos/image/upload/c_scale,w_360/v1523527883/blog/compiler-compiler.png">
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-txt">
+          <span class="scope">UNIVERSITY</span>
+          <h2>Diagram modeling of a car assembly plant</h2>
+          <p>We were lucky enough to get a guided tour of a car assembly plant. Following the visit we had to draw a visualization of the design of that system.</p>
+          <p>This kind of exercise helps with software design through a standard way of representing the architecture of any system.</p>
+          <div class="keywords">
+            <span class="keyword neutral-grey">UML</span>
+            <span class="keyword neutral-grey">Software design</span>
+          </div>
+        </div>
+        <div class="card-img">
+          <img class="img" src="https://res.cloudinary.com/gphos/image/upload/c_scale,w_360/v1523526213/blog/douai.png">
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-txt">
+          <span class="scope">HIGH SCHOOL</span>
+          <h2>Graphing calculator TI-89</h2>
+          <p>On this machine I wrote my first programs, from simple maths tools to a simple RSA cryptosystem.</p>
+          <div class="keywords">
+            <span class="keyword neutral-grey">TI-BASIC</span>
+          </div>
+        </div>
+        <div class="card-img">
+          <img class="img" src="https://res.cloudinary.com/gphos/image/upload/c_scale,w_360/v1523462683/blog/IMG_0128.jpg">
+        </div>
+      </div>
+
+    </div>
+
+  <script type="text/javascript" src="../projects.5123701a.js"></script></body>
+</html>

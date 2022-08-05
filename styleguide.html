@@ -1,0 +1,313 @@
+
+    <!DOCTYPE html>
+    <html>
+      <head>
+      <title>Styleguide</title>
+      <meta charset="utf-8">
+      <meta name="author" content="Mathieu Pavageau">
+      <meta name="description" content="I need one">
+      <meta name="date" content="2020-10-26" scheme="YYYY-MM-DD">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+
+      <meta name="twitter:card" content="summary_large_image">
+      <meta name="twitter:creator" content="@mthpvg">
+      <meta name="twitter:title" content="Styleguide">
+      <meta name="twitter:description" content="I need one">
+      <meta name="twitter:image" content="undefined">
+      <meta name="twitter:image:alt" content="undefined">
+
+      <meta property="og:url" content="https://www.mthpvg.com/styleguide" />
+      <meta property="og:type" content="article" />
+      <meta property="og:title" content="Styleguide" />
+      <meta property="og:description" content="I need one" />
+      <meta property="og:image" content="undefined" />
+
+      <style>/*
+github.com style (c) Vasily Polovnyov <vast@whiteants.net>
+*/
+
+.hljs {
+  display: block;
+  overflow-x: auto;
+  padding: 0.5em;
+  color: #333;
+  background: #f8f8f8;
+}
+
+.hljs-comment,
+.hljs-quote {
+  color: #998;
+  font-style: italic;
+}
+
+.hljs-keyword,
+.hljs-selector-tag,
+.hljs-subst {
+  color: #333;
+  font-weight: bold;
+}
+
+.hljs-number,
+.hljs-literal,
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag .hljs-attr {
+  color: #008080;
+}
+
+.hljs-string,
+.hljs-doctag {
+  color: #d14;
+}
+
+.hljs-title,
+.hljs-section,
+.hljs-selector-id {
+  color: #900;
+  font-weight: bold;
+}
+
+.hljs-subst {
+  font-weight: normal;
+}
+
+.hljs-type,
+.hljs-class .hljs-title {
+  color: #458;
+  font-weight: bold;
+}
+
+.hljs-tag,
+.hljs-name,
+.hljs-attribute {
+  color: #000080;
+  font-weight: normal;
+}
+
+.hljs-regexp,
+.hljs-link {
+  color: #009926;
+}
+
+.hljs-symbol,
+.hljs-bullet {
+  color: #990073;
+}
+
+.hljs-built_in,
+.hljs-builtin-name {
+  color: #0086b3;
+}
+
+.hljs-meta {
+  color: #999;
+  font-weight: bold;
+}
+
+.hljs-deletion {
+  background: #fdd;
+}
+
+.hljs-addition {
+  background: #dfd;
+}
+
+.hljs-emphasis {
+  font-style: italic;
+}
+
+.hljs-strong {
+  font-weight: bold;
+}
+
+body {
+  margin: 0px;
+}
+
+/* NAVBAR */
+.navbar {
+  font-family: monospace;
+  position: fixed;
+  top: 0;
+  background-color: rgb(241, 248, 255);
+  width: 100%;
+  z-index: 1;
+}
+
+.navbar ul li {
+  display: inline;
+  margin-right: 32px;
+}
+
+.navbar ul li .active {
+  text-decoration: underline;
+}
+
+
+/* LINKS */
+
+.navbar a, a.btn {
+  text-decoration: none;
+  color: rgba(0, 0, 0, 0.9);
+}
+
+a:hover {
+  color: rgba(128, 128, 128, 0.9);
+}
+
+
+/* SHEET */
+.sheet {
+  /* That margin is for the fixed navbar */
+  font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, Ubuntu;
+  margin-top: 6rem;
+  margin-right: auto;
+  margin-left: auto;
+  max-width: 900px;
+  width: 98%;
+  color: rgba(0, 0, 0, 0.9);
+  margin-bottom: 8rem;
+}
+
+a {
+  text-decoration: none;
+  color: rgba(0, 0, 0, 0.9);
+}
+
+.my-article {
+  margin-bottom: 40px;
+}
+
+.description {
+  font-weight: lighter;
+}
+
+.no-margin {
+  margin: 0px 0px 4px 0px;
+}
+
+.date {
+  font-size: 0.8em;
+  color: rgba(0, 0, 0, 0.4)
+}
+
+/* h1 {
+  font-weight: normal;
+}
+
+h2 {
+  font-weight: lighter;
+} */
+
+.container-2-1 {
+  width: 100%;
+  height: 0;
+  padding-top: 50%;
+  position: relative;
+}
+
+.container-1-1 {
+  width: 100%;
+  height: 0;
+  padding-top: 100%;
+  position: relative;
+}
+
+.img-2-1 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+
+.img-1-1 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+
+.small {
+  max-width: 600px;
+  margin: 0px auto;
+}
+
+
+/* KEYWORDS */
+.keywords {
+  line-height: 2rem;
+}
+.keyword {
+  padding: 0.1rem 0.5rem;
+  margin-right: 0.5rem;
+}
+.green {
+  background-color: rgb(209, 236, 156);
+  /* color: rgb(80, 119, 2); */
+}
+.neutral-grey {
+  background-color: rgb(241, 248, 255);
+}
+</style>
+      <script type="text/javascript">
+        var _paq = window._paq || [];
+        /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+        _paq.push(["setDocumentTitle", document.domain + "/" + document.title]);
+        _paq.push(["setCookieDomain", "*.www.mthpvg.com"]);
+        _paq.push(['trackPageView']);
+        _paq.push(['enableLinkTracking']);
+        (function() {
+          var u="https://unikkode-analytics.fr/";
+          _paq.push(['setTrackerUrl', u+'matomo.php']);
+          _paq.push(['setSiteId', '22']);
+          var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+          g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+        })();
+      </script>
+      </head>
+      <body>
+        
+  <div class="navbar">
+    <ul>
+      <li>
+        <a class="active" href="/">Blog</a>
+      </li>
+      <li>
+        <a href="/projects">Projects</a>
+      </li>
+      <li>
+        <a href="/resume">Resume</a>
+      </li>
+      <li>
+      <a href="/about">About</a>
+      </li>
+    </ul>
+  </div>
+        <div class="sheet"><h1>An h1 title</h1>
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+<h2>A h2 title</h2>
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+<h3>A h3 title</h3>
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+<h4>A h4 title</h4>
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+<h5>A h5 title</h5>
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">const</span> http = <span class="hljs-built_in">require</span>(<span class="hljs-string">'http'</span>);
+
+<span class="hljs-keyword">const</span> hostname = <span class="hljs-string">'127.0.0.1'</span>;
+<span class="hljs-keyword">const</span> port = <span class="hljs-number">3000</span>;
+
+<span class="hljs-keyword">const</span> server = http.createServer(<span class="hljs-function">(<span class="hljs-params">req, res</span>) =></span> {
+  res.statusCode = <span class="hljs-number">200</span>;
+  res.setHeader(<span class="hljs-string">'Content-Type'</span>, <span class="hljs-string">'text/plain'</span>);
+  res.end(<span class="hljs-string">'Hello World'</span>);
+});
+
+server.listen(port, hostname, () => {
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`Server running at http://<span class="hljs-subst">${hostname}</span>:<span class="hljs-subst">${port}</span>/`</span>);
+});</code></pre>
+</div>
+      </body>
+    </html>
+  

@@ -1,0 +1,331 @@
+
+    <!DOCTYPE html>
+    <html>
+      <head>
+      <title>The Innovator's Dilemma</title>
+      <meta charset="utf-8">
+      <meta name="author" content="Mathieu Pavageau">
+      <meta name="description" content="How disruption is usually more a business issue than a technological one and what can established firms do about it.">
+      <meta name="date" content="2020-11-07" scheme="YYYY-MM-DD">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+
+      <meta name="twitter:card" content="summary_large_image">
+      <meta name="twitter:creator" content="@mthpvg">
+      <meta name="twitter:title" content="The Innovator's Dilemma">
+      <meta name="twitter:description" content="How disruption is usually more a business issue than a technological one and what can established firms do about it.">
+      <meta name="twitter:image" content="undefined">
+      <meta name="twitter:image:alt" content="undefined">
+
+      <meta property="og:url" content="https://www.mthpvg.com/the-innovator-s-dilemma" />
+      <meta property="og:type" content="article" />
+      <meta property="og:title" content="The Innovator's Dilemma" />
+      <meta property="og:description" content="How disruption is usually more a business issue than a technological one and what can established firms do about it." />
+      <meta property="og:image" content="undefined" />
+
+      <style>/*
+github.com style (c) Vasily Polovnyov <vast@whiteants.net>
+*/
+
+.hljs {
+  display: block;
+  overflow-x: auto;
+  padding: 0.5em;
+  color: #333;
+  background: #f8f8f8;
+}
+
+.hljs-comment,
+.hljs-quote {
+  color: #998;
+  font-style: italic;
+}
+
+.hljs-keyword,
+.hljs-selector-tag,
+.hljs-subst {
+  color: #333;
+  font-weight: bold;
+}
+
+.hljs-number,
+.hljs-literal,
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag .hljs-attr {
+  color: #008080;
+}
+
+.hljs-string,
+.hljs-doctag {
+  color: #d14;
+}
+
+.hljs-title,
+.hljs-section,
+.hljs-selector-id {
+  color: #900;
+  font-weight: bold;
+}
+
+.hljs-subst {
+  font-weight: normal;
+}
+
+.hljs-type,
+.hljs-class .hljs-title {
+  color: #458;
+  font-weight: bold;
+}
+
+.hljs-tag,
+.hljs-name,
+.hljs-attribute {
+  color: #000080;
+  font-weight: normal;
+}
+
+.hljs-regexp,
+.hljs-link {
+  color: #009926;
+}
+
+.hljs-symbol,
+.hljs-bullet {
+  color: #990073;
+}
+
+.hljs-built_in,
+.hljs-builtin-name {
+  color: #0086b3;
+}
+
+.hljs-meta {
+  color: #999;
+  font-weight: bold;
+}
+
+.hljs-deletion {
+  background: #fdd;
+}
+
+.hljs-addition {
+  background: #dfd;
+}
+
+.hljs-emphasis {
+  font-style: italic;
+}
+
+.hljs-strong {
+  font-weight: bold;
+}
+
+body {
+  margin: 0px;
+}
+
+/* NAVBAR */
+.navbar {
+  font-family: monospace;
+  position: fixed;
+  top: 0;
+  background-color: rgb(241, 248, 255);
+  width: 100%;
+  z-index: 1;
+}
+
+.navbar ul li {
+  display: inline;
+  margin-right: 32px;
+}
+
+.navbar ul li .active {
+  text-decoration: underline;
+}
+
+
+/* LINKS */
+
+.navbar a, a.btn {
+  text-decoration: none;
+  color: rgba(0, 0, 0, 0.9);
+}
+
+a:hover {
+  color: rgba(128, 128, 128, 0.9);
+}
+
+
+/* SHEET */
+.sheet {
+  /* That margin is for the fixed navbar */
+  font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, Ubuntu;
+  margin-top: 6rem;
+  margin-right: auto;
+  margin-left: auto;
+  max-width: 900px;
+  width: 98%;
+  color: rgba(0, 0, 0, 0.9);
+  margin-bottom: 8rem;
+}
+
+a {
+  text-decoration: none;
+  color: rgba(0, 0, 0, 0.9);
+}
+
+.my-article {
+  margin-bottom: 40px;
+}
+
+.description {
+  font-weight: lighter;
+}
+
+.no-margin {
+  margin: 0px 0px 4px 0px;
+}
+
+.date {
+  font-size: 0.8em;
+  color: rgba(0, 0, 0, 0.4)
+}
+
+/* h1 {
+  font-weight: normal;
+}
+
+h2 {
+  font-weight: lighter;
+} */
+
+.container-2-1 {
+  width: 100%;
+  height: 0;
+  padding-top: 50%;
+  position: relative;
+}
+
+.container-1-1 {
+  width: 100%;
+  height: 0;
+  padding-top: 100%;
+  position: relative;
+}
+
+.img-2-1 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+
+.img-1-1 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+
+.small {
+  max-width: 600px;
+  margin: 0px auto;
+}
+
+
+/* KEYWORDS */
+.keywords {
+  line-height: 2rem;
+}
+.keyword {
+  padding: 0.1rem 0.5rem;
+  margin-right: 0.5rem;
+}
+.green {
+  background-color: rgb(209, 236, 156);
+  /* color: rgb(80, 119, 2); */
+}
+.neutral-grey {
+  background-color: rgb(241, 248, 255);
+}
+</style>
+      <script type="text/javascript">
+        var _paq = window._paq || [];
+        /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+        _paq.push(["setDocumentTitle", document.domain + "/" + document.title]);
+        _paq.push(["setCookieDomain", "*.www.mthpvg.com"]);
+        _paq.push(['trackPageView']);
+        _paq.push(['enableLinkTracking']);
+        (function() {
+          var u="https://unikkode-analytics.fr/";
+          _paq.push(['setTrackerUrl', u+'matomo.php']);
+          _paq.push(['setSiteId', '22']);
+          var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+          g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+        })();
+      </script>
+      </head>
+      <body>
+        
+  <div class="navbar">
+    <ul>
+      <li>
+        <a class="active" href="/">Blog</a>
+      </li>
+      <li>
+        <a href="/projects">Projects</a>
+      </li>
+      <li>
+        <a href="/resume">Resume</a>
+      </li>
+      <li>
+      <a href="/about">About</a>
+      </li>
+    </ul>
+  </div>
+        <div class="sheet"><h1>The Innovator's Dilemma</h1>
+<p><strong>When new technologies cause great firms to fail</strong></p>
+<p>By Clayton M. Christensen</p>
+<h2>Starting quote</h2>
+<p>"<em>... disruptive products are simpler and cheaper, promise lower margins.... are commercialized in... insignificant markets....</em></p>
+<p><em>leading firms' most profitable customers generally don't want, and indeed intially can't use, products based on disruptive technology....</em></p>
+<p><em>Hence, most companies... are rarely able to build a case for investing in disruptive technologies until it is too late.</em>"</p>
+<h2>Definitions</h2>
+<p>A <strong>disruptive innovation</strong> is an innovation causing business problems to established firms.</p>
+<p>A <strong>sustaining innovation</strong> is an innovation favoring the business of an established firm.</p>
+<h2>Key points</h2>
+<p><strong>The Situation</strong></p>
+<ul>
+<li>Good managers are good at killing ideas that are not fit for their most profitable customers.</li>
+<li>Resource dependence says that customers and shareholders control a company.</li>
+<li>Being data-driven does not prepare for disruption; data only comes from the past. You need a theory/framework to foresee the future.</li>
+<li>Disruption is usually more a business issue than a technological one.</li>
+</ul>
+<p><strong>The dilemma</strong></p>
+<ul>
+<li>Established firms only move upmarket through sustaining innovations.</li>
+<li>When sustaining innovations outpace the customer's needs it allows disruptors from downmarket to move up.</li>
+<li>Established firms cost structure forbids them to go after small or low profit markets.</li>
+</ul>
+<p><strong>The DONTs</strong></p>
+<ul>
+<li>Do not wait for a disruptive technology to be competitive in your established market.</li>
+<li>Do not adapt the disruptive technology to fit the market of a sustaining technology.</li>
+<li>Do not be afraid of cannibalizing your own product lines.</li>
+</ul>
+<p><strong>The Solutions</strong></p>
+<ul>
+<li>Create a new independent organization with an appropriate cost structure fitting the disruptive innovation.</li>
+<li>Acquire a disruptive company and keep it independent.</li>
+</ul>
+<h2>Final words</h2>
+<p>Apple just announced a switch from Intel to ARM for their laptop line. This is an excellent example of an established firm being disrupted.</p>
+<p>Nobody can argue about Intel being a performing company leading their market for years. But during that time they turned down the opportunity to manufacture a chip for the iPhone. The rest is history.</p>
+<p>In the late 90's Andy Grove (Intel CEO, the father of OKRs) asked for Clayton Christensen advice on disruption. One more proof that despite being aware of the disruption, dealing with it is really, really hard.</p>
+<p>In my opinion, the dilemma is to put your long-term interests above your short-term interests. In this case your long-term interests is your very own survival. But short-term interests are the only metrics upon which you and others measure your own performance.</p>
+<h2>Note</h2>
+<p>This book is recommended by Jeff B, Steve J, Marc A and Mathieu P :).</p>
+</div>
+      </body>
+    </html>
+  

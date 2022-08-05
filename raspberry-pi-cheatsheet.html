@@ -1,0 +1,397 @@
+
+    <!DOCTYPE html>
+    <html>
+      <head>
+      <title>Raspberry Pi cheatsheet</title>
+      <meta charset="utf-8">
+      <meta name="author" content="Mathieu Pavageau">
+      <meta name="description" content="For when you reached Google fatigue.">
+      <meta name="date" content="2020-09-09" scheme="YYYY-MM-DD">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+
+      <meta name="twitter:card" content="summary_large_image">
+      <meta name="twitter:creator" content="@mthpvg">
+      <meta name="twitter:title" content="Raspberry Pi cheatsheet">
+      <meta name="twitter:description" content="For when you reached Google fatigue.">
+      <meta name="twitter:image" content="undefined">
+      <meta name="twitter:image:alt" content="undefined">
+
+      <meta property="og:url" content="https://www.mthpvg.com/raspberry-pi-cheatsheet" />
+      <meta property="og:type" content="article" />
+      <meta property="og:title" content="Raspberry Pi cheatsheet" />
+      <meta property="og:description" content="For when you reached Google fatigue." />
+      <meta property="og:image" content="undefined" />
+
+      <style>/*
+github.com style (c) Vasily Polovnyov <vast@whiteants.net>
+*/
+
+.hljs {
+  display: block;
+  overflow-x: auto;
+  padding: 0.5em;
+  color: #333;
+  background: #f8f8f8;
+}
+
+.hljs-comment,
+.hljs-quote {
+  color: #998;
+  font-style: italic;
+}
+
+.hljs-keyword,
+.hljs-selector-tag,
+.hljs-subst {
+  color: #333;
+  font-weight: bold;
+}
+
+.hljs-number,
+.hljs-literal,
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag .hljs-attr {
+  color: #008080;
+}
+
+.hljs-string,
+.hljs-doctag {
+  color: #d14;
+}
+
+.hljs-title,
+.hljs-section,
+.hljs-selector-id {
+  color: #900;
+  font-weight: bold;
+}
+
+.hljs-subst {
+  font-weight: normal;
+}
+
+.hljs-type,
+.hljs-class .hljs-title {
+  color: #458;
+  font-weight: bold;
+}
+
+.hljs-tag,
+.hljs-name,
+.hljs-attribute {
+  color: #000080;
+  font-weight: normal;
+}
+
+.hljs-regexp,
+.hljs-link {
+  color: #009926;
+}
+
+.hljs-symbol,
+.hljs-bullet {
+  color: #990073;
+}
+
+.hljs-built_in,
+.hljs-builtin-name {
+  color: #0086b3;
+}
+
+.hljs-meta {
+  color: #999;
+  font-weight: bold;
+}
+
+.hljs-deletion {
+  background: #fdd;
+}
+
+.hljs-addition {
+  background: #dfd;
+}
+
+.hljs-emphasis {
+  font-style: italic;
+}
+
+.hljs-strong {
+  font-weight: bold;
+}
+
+body {
+  margin: 0px;
+}
+
+/* NAVBAR */
+.navbar {
+  font-family: monospace;
+  position: fixed;
+  top: 0;
+  background-color: rgb(241, 248, 255);
+  width: 100%;
+  z-index: 1;
+}
+
+.navbar ul li {
+  display: inline;
+  margin-right: 32px;
+}
+
+.navbar ul li .active {
+  text-decoration: underline;
+}
+
+
+/* LINKS */
+
+.navbar a, a.btn {
+  text-decoration: none;
+  color: rgba(0, 0, 0, 0.9);
+}
+
+a:hover {
+  color: rgba(128, 128, 128, 0.9);
+}
+
+
+/* SHEET */
+.sheet {
+  /* That margin is for the fixed navbar */
+  font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, Ubuntu;
+  margin-top: 6rem;
+  margin-right: auto;
+  margin-left: auto;
+  max-width: 900px;
+  width: 98%;
+  color: rgba(0, 0, 0, 0.9);
+  margin-bottom: 8rem;
+}
+
+a {
+  text-decoration: none;
+  color: rgba(0, 0, 0, 0.9);
+}
+
+.my-article {
+  margin-bottom: 40px;
+}
+
+.description {
+  font-weight: lighter;
+}
+
+.no-margin {
+  margin: 0px 0px 4px 0px;
+}
+
+.date {
+  font-size: 0.8em;
+  color: rgba(0, 0, 0, 0.4)
+}
+
+/* h1 {
+  font-weight: normal;
+}
+
+h2 {
+  font-weight: lighter;
+} */
+
+.container-2-1 {
+  width: 100%;
+  height: 0;
+  padding-top: 50%;
+  position: relative;
+}
+
+.container-1-1 {
+  width: 100%;
+  height: 0;
+  padding-top: 100%;
+  position: relative;
+}
+
+.img-2-1 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+
+.img-1-1 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+
+.small {
+  max-width: 600px;
+  margin: 0px auto;
+}
+
+
+/* KEYWORDS */
+.keywords {
+  line-height: 2rem;
+}
+.keyword {
+  padding: 0.1rem 0.5rem;
+  margin-right: 0.5rem;
+}
+.green {
+  background-color: rgb(209, 236, 156);
+  /* color: rgb(80, 119, 2); */
+}
+.neutral-grey {
+  background-color: rgb(241, 248, 255);
+}
+</style>
+      <script type="text/javascript">
+        var _paq = window._paq || [];
+        /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+        _paq.push(["setDocumentTitle", document.domain + "/" + document.title]);
+        _paq.push(["setCookieDomain", "*.www.mthpvg.com"]);
+        _paq.push(['trackPageView']);
+        _paq.push(['enableLinkTracking']);
+        (function() {
+          var u="https://unikkode-analytics.fr/";
+          _paq.push(['setTrackerUrl', u+'matomo.php']);
+          _paq.push(['setSiteId', '22']);
+          var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+          g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+        })();
+      </script>
+      </head>
+      <body>
+        
+  <div class="navbar">
+    <ul>
+      <li>
+        <a class="active" href="/">Blog</a>
+      </li>
+      <li>
+        <a href="/projects">Projects</a>
+      </li>
+      <li>
+        <a href="/resume">Resume</a>
+      </li>
+      <li>
+      <a href="/about">About</a>
+      </li>
+    </ul>
+  </div>
+        <div class="sheet"><h1>Raspberry Pi cheatsheet</h1>
+<h2>Image</h2>
+<h3>Flashing</h3>
+<p>For a headless setup, download Lite version:</p>
+<p><a href="https://www.raspberrypi.org/downloads/raspberry-pi-os/">https://www.raspberrypi.org/downloads/raspberry-pi-os/</a></p>
+<p>Plug a micro SD card and burn the image on it with <a href="https://www.balena.io/etcher/">Etcher</a>, no need to unzip it, Etcher got your back.</p>
+<p>Etcher unmounted the card so you can take it on and off again for your computer to mount it again.</p>
+<p>Enable SSH</p>
+<pre><code class="hljs language-bash"><span class="hljs-comment"># From your computer</span>
+touch /Volumes/boot/ssh</code></pre>
+<p>If you do not have Ethernet or do not want to use it you need to enter some wifi credentials</p>
+<pre><code class="hljs language-bash"><span class="hljs-comment"># From your computer</span>
+vi /Volumes/boot/wpa_supplicant.conf</code></pre>
+<p>Fill this file with</p>
+<pre><code>country=FR
+ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
+update_config=1
+
+network={
+    ssid="NETWORK-NAME"
+    psk="NETWORK-PASSWORD"
+}
+</code></pre>
+<p>Unmount either through the finder with a click, or by finding the identifier through the <code>diskutil</code> command:</p>
+<pre><code class="hljs language-bash"><span class="hljs-comment">#From your computer</span>
+$ diskutil list
+<span class="hljs-comment"># [...]</span>
+/dev/disk2 (external, physical):
+   <span class="hljs-comment">#:                       TYPE NAME                    SIZE       IDENTIFIER</span>
+   0:     FDisk_partition_scheme                        *15.9 GB    disk2
+   1:             Windows_FAT_32 boot                    268.4 MB   disk2s1
+   2:                      Linux                         1.6 GB     disk2s2
+$ sudo diskutil umountDisk disk2</code></pre>
+<p>Plug the micro SD card into the Raspberry Pi, power it on and then wait a minute for it to appear on your network.</p>
+<pre><code class="hljs language-bash"><span class="hljs-comment"># From your computer</span>
+$ ssh pi@raspberrypi
+<span class="hljs-comment"># The default password is raspberry</span></code></pre>
+<p>If you can not reach it through its hostname you can scan your local network:</p>
+<pre><code class="hljs language-bash"><span class="hljs-comment"># From your computer</span>
+$ nmap -sP 192.168.1.\*</code></pre>
+<p><a href="https://www.raspberrypi.org/documentation/installation/installing-images/mac.md">Etcher alternative</a></p>
+<h2>First steps</h2>
+<h3>Change the password</h3>
+<pre><code class="hljs language-bash"><span class="hljs-comment"># From the Pi</span>
+passwd</code></pre>
+<h3>Passwordless ssh access</h3>
+<p>Copy your public key to the Raspberry Pi:</p>
+<pre><code class="hljs language-bash"><span class="hljs-comment"># From your computer</span>
+ssh-copy-id pi@raspberrypi</code></pre>
+<p><a href="https://www.raspberrypi.org/documentation/remote-access/ssh/passwordless.md">More on the subject</a></p>
+<h3>Upgrade</h3>
+<pre><code class="hljs language-bash"><span class="hljs-comment"># From the Pi</span>
+$ sudo apt update
+$ sudo apt full-upgrade</code></pre>
+<h2>Hardware</h2>
+<h3>Enabling the camera</h3>
+<pre><code class="hljs language-bash"><span class="hljs-comment"># From the Pi</span>
+$ sudo raspi-config
+<span class="hljs-comment"># Select interfacing options > camera > enable the camera and reboot when asked to</span></code></pre>
+<p><a href="https://www.raspberrypi.org/documentation/configuration/camera.md">More on the subject</a></p>
+<h2>Backup and restore</h2>
+<h3>Backup</h3>
+<p>Plug the Raspberry Pi's micro SD card in your computer. Find it with the <code>diskutil list</code> command and unmount it</p>
+<pre><code class="hljs language-bash"><span class="hljs-comment"># From your computer</span>
+$ sudo diskutil umountDisk disk2</code></pre>
+<p>If you do not unmount it you will get the error:</p>
+<pre><code>dd: /dev/disk2s1: Resource busy
+</code></pre>
+<p>The Disk Destroyer command, <code>dd</code>:</p>
+<pre><code class="hljs language-bash"><span class="hljs-comment"># From your computer</span>
+$ sudo dd bs=4m <span class="hljs-keyword">if</span>=/dev/disk2 of=20200906__pi-zero__raspbian__camera.img
+15931539456 bytes transferred <span class="hljs-keyword">in</span> 1769.633776 secs (9002732 bytes/sec)</code></pre>
+<p>Roughly 30 minutes for a 16Gb micro SD card.</p>
+<h3>Restore</h3>
+<p>Same drill as for the previous backup section: plug, find and unmount.</p>
+<pre><code class="hljs language-bash"><span class="hljs-comment"># From your computer</span>
+$ sudo dd bs=4m <span class="hljs-keyword">if</span>=/Users/mat/images/20200906__pi-zero__raspbian__camera.img of=/dev/disk2
+15931539456 bytes transferred <span class="hljs-keyword">in</span> 4487.789624 secs (3549975 bytes/sec)</code></pre>
+<p>Roughly 75 minutes for the same card.</p>
+<p>An error you might encounter:</p>
+<pre><code>dd: bs: illegal numeric value
+</code></pre>
+<p>It is probably because you wrote <em>4M</em> and not <em>4m</em>.</p>
+<h2>Installing</h2>
+<h3>node.js</h3>
+<p>Get the machine's architecture</p>
+<pre><code class="hljs language-bash"><span class="hljs-comment"># From the Pi</span>
+$ uname -a
+Linux raspberrypi 5.4.51+ <span class="hljs-comment">#1333 Mon Aug 10 16:38:02 BST 2020 armv6l GNU/Linux</span></code></pre>
+<p>The architecture is <code>armv6l</code> as it should in a Raspberry Pi Zero.</p>
+<p>Unfortunately node.js does not support <code>armv6l</code> in their latest LTS releases, namely v14 and v12.</p>
+<p>Either go for a v10 build:</p>
+<p><a href="https://nodejs.org/dist/latest-v10.x/node-v10.22.0-linux-armv6l.tar.gz">https://nodejs.org/dist/latest-v10.x/node-v10.22.0-linux-armv6l.tar.gz</a></p>
+<p>Or go for <a href="https://github.com/nodejs/build/issues/1677#issuecomment-486204349">Rod Vagg's unofficial builds</a>:</p>
+<p><a href="https://unofficial-builds.nodejs.org/download/release/v14.10.0/node-v14.10.0-linux-armv6l.tar.gz">https://unofficial-builds.nodejs.org/download/release/v14.10.0/node-v14.10.0-linux-armv6l.tar.gz</a></p>
+<p>Thank you <a href="https://github.com/rvagg">Rod</a>!</p>
+<p>Let's get v10:</p>
+<pre><code class="hljs language-bash"><span class="hljs-comment"># From the Pi</span>
+wget https://nodejs.org/dist/latest-v10.x/node-v10.22.0-linux-armv6l.tar.gz
+tar -xzf node-v10.22.0-linux-armv6l.tar.gz
+sudo cp -R node-v10.22.0-linux-armv6l/* /usr/<span class="hljs-built_in">local</span>
+rm - rf rm -rf node-v10.22.0-linux-armv6l*</code></pre>
+<h3>Git</h3>
+<pre><code class="hljs language-bash"><span class="hljs-comment"># From the Pi</span>
+sudo apt-get install git -y
+
+git config --global user.name <span class="hljs-string">"Sarah Conor"</span>
+git config --global user.email sarah@cyberdyne.com</code></pre>
+</div>
+      </body>
+    </html>
+  
