@@ -1,0 +1,347 @@
+
+    <!DOCTYPE html>
+    <html>
+      <head>
+      <title>Run and Chat with LLMs Using Ollama and Open WebUI</title>
+      <meta charset="utf-8">
+      <meta name="author" content="Mathieu Pavageau">
+      <meta name="description" content="Learn how to set up and chat with local LLMs like LLaMA and Mistral using Ollama and Open WebUI on macOS and Linux.">
+      <meta name="date" content="2025-01-10" scheme="YYYY-MM-DD">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+
+      <meta name="twitter:card" content="summary_large_image">
+      <meta name="twitter:creator" content="@mthpvg">
+      <meta name="twitter:title" content="Run and Chat with LLMs Using Ollama and Open WebUI">
+      <meta name="twitter:description" content="Learn how to set up and chat with local LLMs like LLaMA and Mistral using Ollama and Open WebUI on macOS and Linux.">
+      <meta name="twitter:image" content="undefined">
+      <meta name="twitter:image:alt" content="undefined">
+
+      <meta property="og:url" content="https://www.mthpvg.com/run-and-chat with-llms-with-ollama-and-open-webui" />
+      <meta property="og:type" content="article" />
+      <meta property="og:title" content="Run and Chat with LLMs Using Ollama and Open WebUI" />
+      <meta property="og:description" content="Learn how to set up and chat with local LLMs like LLaMA and Mistral using Ollama and Open WebUI on macOS and Linux." />
+      <meta property="og:image" content="undefined" />
+
+      <style>/*
+github.com style (c) Vasily Polovnyov <vast@whiteants.net>
+*/
+
+.hljs {
+  display: block;
+  overflow-x: auto;
+  padding: 0.5em;
+  color: #333;
+  background: #f8f8f8;
+}
+
+.hljs-comment,
+.hljs-quote {
+  color: #998;
+  font-style: italic;
+}
+
+.hljs-keyword,
+.hljs-selector-tag,
+.hljs-subst {
+  color: #333;
+  font-weight: bold;
+}
+
+.hljs-number,
+.hljs-literal,
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag .hljs-attr {
+  color: #008080;
+}
+
+.hljs-string,
+.hljs-doctag {
+  color: #d14;
+}
+
+.hljs-title,
+.hljs-section,
+.hljs-selector-id {
+  color: #900;
+  font-weight: bold;
+}
+
+.hljs-subst {
+  font-weight: normal;
+}
+
+.hljs-type,
+.hljs-class .hljs-title {
+  color: #458;
+  font-weight: bold;
+}
+
+.hljs-tag,
+.hljs-name,
+.hljs-attribute {
+  color: #000080;
+  font-weight: normal;
+}
+
+.hljs-regexp,
+.hljs-link {
+  color: #009926;
+}
+
+.hljs-symbol,
+.hljs-bullet {
+  color: #990073;
+}
+
+.hljs-built_in,
+.hljs-builtin-name {
+  color: #0086b3;
+}
+
+.hljs-meta {
+  color: #999;
+  font-weight: bold;
+}
+
+.hljs-deletion {
+  background: #fdd;
+}
+
+.hljs-addition {
+  background: #dfd;
+}
+
+.hljs-emphasis {
+  font-style: italic;
+}
+
+.hljs-strong {
+  font-weight: bold;
+}
+
+body {
+  margin: 0px;
+}
+
+/* NAVBAR */
+.navbar {
+  font-family: monospace;
+  position: fixed;
+  top: 0;
+  background-color: rgb(241, 248, 255);
+  width: 100%;
+  z-index: 1;
+}
+
+.navbar ul li {
+  display: inline;
+  margin-right: 32px;
+}
+
+.navbar ul li .active {
+  text-decoration: underline;
+}
+
+
+/* LINKS */
+
+.navbar a, a.btn {
+  text-decoration: none;
+  color: rgba(0, 0, 0, 0.9);
+}
+
+a:hover {
+  color: rgba(128, 128, 128, 0.9);
+}
+
+
+/* SHEET */
+.sheet {
+  /* That margin is for the fixed navbar */
+  font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, Ubuntu;
+  margin-top: 6rem;
+  margin-right: auto;
+  margin-left: auto;
+  max-width: 900px;
+  width: 98%;
+  color: rgba(0, 0, 0, 0.9);
+  margin-bottom: 8rem;
+}
+
+a {
+  text-decoration: none;
+  color: rgba(0, 0, 0, 0.9);
+}
+
+.my-article {
+  margin-bottom: 40px;
+}
+
+.description {
+  font-weight: lighter;
+}
+
+.no-margin {
+  margin: 0px 0px 4px 0px;
+}
+
+.date {
+  font-size: 0.8em;
+  color: rgba(0, 0, 0, 0.4)
+}
+
+/* h1 {
+  font-weight: normal;
+}
+
+h2 {
+  font-weight: lighter;
+} */
+
+.container-2-1 {
+  width: 100%;
+  height: 0;
+  padding-top: 50%;
+  position: relative;
+}
+
+.container-1-1 {
+  width: 100%;
+  height: 0;
+  padding-top: 100%;
+  position: relative;
+}
+
+.img-2-1 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+
+.img-1-1 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+
+.small {
+  max-width: 600px;
+  margin: 0px auto;
+}
+
+
+/* KEYWORDS */
+.keywords {
+  line-height: 2rem;
+}
+.keyword {
+  padding: 0.1rem 0.5rem;
+  margin-right: 0.5rem;
+}
+.green {
+  background-color: rgb(209, 236, 156);
+  /* color: rgb(80, 119, 2); */
+}
+.neutral-grey {
+  background-color: rgb(241, 248, 255);
+}
+</style>
+      <script type="text/javascript">
+        var _paq = window._paq || [];
+        /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+        _paq.push(["setDocumentTitle", document.domain + "/" + document.title]);
+        _paq.push(["setCookieDomain", "*.www.mthpvg.com"]);
+        _paq.push(['trackPageView']);
+        _paq.push(['enableLinkTracking']);
+        (function() {
+          var u="https://unikkode-analytics.fr/";
+          _paq.push(['setTrackerUrl', u+'matomo.php']);
+          _paq.push(['setSiteId', '22']);
+          var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+          g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+        })();
+      </script>
+      </head>
+      <body>
+        
+  <div class="navbar">
+    <ul>
+      <li>
+        <a class="active" href="/">Blog</a>
+      </li>
+      <li>
+        <a href="/projects">Projects</a>
+      </li>
+      <li>
+        <a href="/resume">Resume</a>
+      </li>
+      <li>
+      <a href="/about">About</a>
+      </li>
+    </ul>
+  </div>
+        <div class="sheet"><h1>Run and Chat with LLMs Using Ollama and Open WebUI</h1>
+<h2>Motivation</h2>
+<p>I wanted to chat with large language models (LLMs) locally. I discovered two open-source tools that enable this: Ollama and Open WebUI. These are my notes on how to set them up and use them effectively.</p>
+<h2>Definitions</h2>
+<ul>
+<li>Ollama: A tool for interacting with LLMs locally.</li>
+<li>Open WebUI: A web-based interface for chatting with LLMs locally.</li>
+</ul>
+<h2>Machines</h2>
+<p>Prerequisites</p>
+<ul>
+<li>Docker</li>
+<li>GitHub personal access token to authenticate with the GitHub Container Registry</li>
+</ul>
+<p>Authenticate using your personal access token:</p>
+<pre><code class="hljs language-bash"><span class="hljs-built_in">export</span> CR_PAT=YOUR_TOKEN
+<span class="hljs-built_in">echo</span> <span class="hljs-variable">$CR_PAT</span> | docker login ghcr.io -u USERNAME --password-stdin</code></pre>
+<p>For more details, refer to the GitHub documentation.</p>
+<h3>macOS</h3>
+<pre><code>1.  Download the macOS binary for Ollama from the Ollama download page.
+2.  Find a model on Ollama’s model page and download it:
+</code></pre>
+<pre><code class="hljs language-bash">ollama pull qwen2.5:7b</code></pre>
+<pre><code>3.  Pull and run the Open WebUI Docker container:
+</code></pre>
+<pre><code class="hljs language-bash">docker pull ghcr.io/open-webui/open-webui:main
+docker run -d -p 3000:8080 -v open-webui:/app/backend/data --name open-webui ghcr.io/open-webui/open-webui:main</code></pre>
+<pre><code>4.  Access Open WebUI at http://localhost:3000.
+</code></pre>
+<h3>Linux with CUDA</h3>
+<pre><code>1.  Download and run the Linux bash script for Ollama from the Ollama download page.
+2.  Pull and run the Open WebUI Docker container:
+</code></pre>
+<pre><code class="hljs language-bash">docker pull ghcr.io/open-webui/open-webui:cuda
+docker run -d --network=host --gpus all -v open-webui:/app/backend/data -e OLLAMA_BASE_URL=http://127.0.0.1:11434 --name open-webui ghcr.io/open-webui/open-webui:cuda</code></pre>
+<pre><code>3.  If you encounter the error:
+</code></pre>
+<pre><code class="hljs language-bash">docker: Error response from daemon: could not select device driver <span class="hljs-string">""</span> with capabilities: [[gpu]].</code></pre>
+<p>Run the following commands to fix it:</p>
+<pre><code class="hljs language-bash">sudo apt install -y nvidia-container-toolkit
+sudo nvidia-ctk runtime configure
+sudo systemctl restart docker</code></pre>
+<pre><code>4.  Access Open WebUI at http://localhost:8080.
+</code></pre>
+<h2>Usage</h2>
+<h3>Speed</h3>
+<p>Using a simple prompt on <strong>qwen2.5:7b</strong> such as “Explain Markov chains”  I observed the following speeds:</p>
+<ul>
+<li>macOS (MacBook Pro M3 Pro): 25 tokens/s</li>
+<li>Linux with CUDA (RTX 3060): 50 tokens/s</li>
+</ul>
+<h3>Comparing Models</h3>
+<p>Open WebUI allows you to ask one question and receive side-by-side answers from multiple models. You can provide feedback (thumbs up or down) on the answers, and Open WebUI offers a dashboard to analyze their performance based on your feedback.</p>
+<h2>Conclusion</h2>
+<p>Both Ollama and Open WebUI are impressive open-source tools that fulfill unique roles in enabling local interaction with LLMs. While the models are not as advanced as commercial counterparts, this is a reasonable trade-off given the flexibility and privacy benefits of local deployment.</p>
+<p>Some drawbacks include occasional computation freezes with larger models, requiring container restarts. The side-by-side comparison feature works well for initial prompts, but subsequent questions appear to let models access each other’s answers, undermining the isolation needed for unbiased comparisons. I hope future updates include a feature that ensures strict isolation between models.</p>
+<h2>Acknowledgements</h2>
+<p>I follow <a href="https://mastodon.social/@simon@simonwillison.net">Simon Willison</a> on Mastodon, and their work inspired me to write this article.</p>
+</div>
+      </body>
+    </html>
+  
